@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Header() {
+  const [activeSection, setActiveSection] = useState('home');
+
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    setActiveSection(sectionId);
   };
+
+  // Update active section on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'services', 'contact'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      
+      if (current) {
+        setActiveSection(current);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <header style={styles.header}>
@@ -19,28 +44,44 @@ function Header() {
         
         <nav style={styles.nav}>
           <button 
-            style={styles.navLink} 
+            style={{
+              ...styles.navLink,
+              ...(activeSection === 'home' ? styles.activeNavLink : {})
+            }} 
             onClick={() => scrollToSection('home')}
           >
             Home
+            {activeSection === 'home' && <div style={styles.activeIndicator}></div>}
           </button>
           <button 
-            style={styles.navLink} 
+            style={{
+              ...styles.navLink,
+              ...(activeSection === 'about' ? styles.activeNavLink : {})
+            }} 
             onClick={() => scrollToSection('about')}
           >
             About
+            {activeSection === 'about' && <div style={styles.activeIndicator}></div>}
           </button>
           <button 
-            style={styles.navLink} 
+            style={{
+              ...styles.navLink,
+              ...(activeSection === 'services' ? styles.activeNavLink : {})
+            }} 
             onClick={() => scrollToSection('services')}
           >
             Services
+            {activeSection === 'services' && <div style={styles.activeIndicator}></div>}
           </button>
           <button 
-            style={styles.navLink} 
+            style={{
+              ...styles.navLink,
+              ...(activeSection === 'contact' ? styles.activeNavLink : {})
+            }} 
             onClick={() => scrollToSection('contact')}
           >
             Contact
+            {activeSection === 'contact' && <div style={styles.activeIndicator}></div>}
           </button>
         </nav>
       </div>
@@ -73,11 +114,13 @@ const styles = {
     gap: '1rem'
   },
   logo: {
-    width: '70px', // Increased from 50px
-    height: '70px', // Increased from 50px
-    borderRadius: '50%',
-    objectFit: 'cover',
-    border: '2px solid #73a9c2'
+    width: '70px',
+    height: '70px',
+    borderRadius: '12px', // Changed from circle to rounded square
+    objectFit: 'contain', // Changed from cover to contain to show full logo
+    border: '2px solid #73a9c2',
+    padding: '3px', // Added padding to ensure logo doesn't touch border
+    backgroundColor: 'white' // Added white background to make logo stand out
   },
   logoText: {
     fontSize: '1.5rem',
@@ -89,7 +132,8 @@ const styles = {
   },
   nav: {
     display: 'flex',
-    gap: '1.5rem'
+    gap: '1.5rem',
+    position: 'relative'
   },
   navLink: {
     color: 'white',
@@ -100,8 +144,40 @@ const styles = {
     padding: '0.7rem 1.5rem',
     borderRadius: '8px',
     transition: 'all 0.3s ease',
-    fontWeight: '500'
+    fontWeight: '500',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '4px'
+  },
+  activeNavLink: {
+    background: 'rgba(115, 169, 194, 0.2)',
+    color: '#a8d8ea',
+    fontWeight: '600'
+  },
+  activeIndicator: {
+    width: '6px',
+    height: '6px',
+    borderRadius: '50%',
+    backgroundColor: '#73a9c2',
+    position: 'absolute',
+    bottom: '2px',
+    animation: 'pulse 2s infinite'
   }
 };
+
+// Add pulse animation for the active indicator
+const styleSheet = document.styleSheets[0];
+if (styleSheet) {
+  const pulseAnimation = `
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  `;
+  styleSheet.insertRule(pulseAnimation, styleSheet.cssRules.length);
+}
 
 export default Header;

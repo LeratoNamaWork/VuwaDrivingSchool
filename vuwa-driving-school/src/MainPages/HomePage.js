@@ -64,14 +64,17 @@ function HomePage() {
         </div>
       </section>
 
-      {/* About Section - IMPROVED LAYOUT */}
+      {/* About Section with Street Line Background */}
       <section id="about" style={styles.aboutSection}>
         <div style={styles.aboutContainer}>
           <div style={styles.aboutHeader}>
-            <h2 style={styles.aboutMainTitle}>About Vuwa Driving School</h2>
-            <p style={styles.aboutSubtitle}>
-              Your Trusted Partner in Driving Excellence Since 2019
-            </p>
+            <div style={styles.streetBackground}>
+              <div style={styles.streetLines}></div>
+              <h2 style={styles.aboutMainTitle}>About Vuwa Driving School</h2>
+              <p style={styles.aboutSubtitle}>
+                Your Trusted Partner in Driving Excellence Since 2019
+              </p>
+            </div>
           </div>
           
           <div style={styles.aboutContent}>
@@ -164,7 +167,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services Section with Reduced Containers */}
       <section id="services" style={styles.servicesSection}>
         <div style={styles.servicesContainer}>
           <div style={styles.servicesHeader}>
@@ -187,7 +190,6 @@ function HomePage() {
                 <span style={styles.featureTag}>Road Signs</span>
                 <span style={styles.featureTag}>Traffic Rules</span>
                 <span style={styles.featureTag}>Test Prep</span>
-                <span style={styles.featureTag}>Study Materials</span>
               </div>
             </div>
 
@@ -203,7 +205,6 @@ function HomePage() {
                 <span style={styles.featureTag}>Beginner to Advanced</span>
                 <span style={styles.featureTag}>Manual & Automatic</span>
                 <span style={styles.featureTag}>City & Highway</span>
-                <span style={styles.featureTag}>Parking Techniques</span>
               </div>
             </div>
 
@@ -219,7 +220,6 @@ function HomePage() {
                 <span style={styles.featureTag}>Light Vehicles</span>
                 <span style={styles.featureTag}>Comprehensive Training</span>
                 <span style={styles.featureTag}>Test Preparation</span>
-                <span style={styles.featureTag}>Vehicle Provided</span>
               </div>
             </div>
 
@@ -235,7 +235,6 @@ function HomePage() {
                 <span style={styles.featureTag}>Heavy Vehicles</span>
                 <span style={styles.featureTag}>Professional Training</span>
                 <span style={styles.featureTag}>Load Handling</span>
-                <span style={styles.featureTag}>Career Prep</span>
               </div>
             </div>
           </div>
@@ -321,6 +320,16 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* WhatsApp Floating Button */}
+      <a 
+        href="https://wa.me/27790659736?text=Hello%20Vuwa%20Driving%20School!" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        style={styles.whatsappButton}
+      >
+        <img src="/whatsapp.jpeg" alt="WhatsApp" style={styles.whatsappIcon}/>
+      </a>
     </main>
   );
 }
@@ -333,15 +342,15 @@ const styles = {
     fontFamily: "'Arial', sans-serif"
   },
   
-  // Hero Section - INCREASED HEIGHT
+  // Hero Section
   hero: {
     background: 'linear-gradient(135deg, rgba(69, 101, 116, 0.9) 0%, rgba(58, 85, 97, 0.9) 50%, rgba(81, 118, 136, 0.9) 100%)',
     color: 'white',
-    padding: '5rem 0', // Increased padding
+    padding: '5rem 0',
     textAlign: 'center',
     position: 'relative',
     overflow: 'hidden',
-    minHeight: '75vh', // Increased from 70vh to 75vh
+    minHeight: '75vh',
     display: 'flex',
     alignItems: 'center',
     width: '100%'
@@ -445,10 +454,10 @@ const styles = {
     fontSize: '1.2rem'
   },
 
-  // About Section - IMPROVED LAYOUT
+  // About Section with Street Line Background
   aboutSection: {
     backgroundColor: '#f8fafc',
-    padding: '5rem 0', // Reduced padding to remove white space
+    padding: '5rem 0',
     width: '100%'
   },
   aboutContainer: {
@@ -458,45 +467,70 @@ const styles = {
   },
   aboutHeader: {
     textAlign: 'center',
-    marginBottom: '3rem' // Reduced margin
+    marginBottom: '4rem'
+  },
+  streetBackground: {
+    position: 'relative',
+    padding: '3rem 2rem',
+    background: 'linear-gradient(135deg, #1e2f3a 0%, #2d4a5a 100%)',
+    borderRadius: '20px',
+    overflow: 'hidden',
+    boxShadow: '0 15px 35px rgba(0,0,0,0.1)'
+  },
+  streetLines: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: `
+      linear-gradient(90deg, transparent 49%, #73a9c2 49%, #73a9c2 51%, transparent 51%) 0 0 / 60px 60px,
+      linear-gradient(90deg, transparent 49%, #73a9c2 49%, #73a9c2 51%, transparent 51%) 30px 30px / 60px 60px
+    `,
+    opacity: 0.3,
+    animation: 'moveRoad 20s linear infinite'
   },
   aboutMainTitle: {
     fontSize: '3rem',
     marginBottom: '1rem',
     fontWeight: 'bold',
-    color: '#1e2f3a',
-    background: 'linear-gradient(135deg, #1e2f3a, #73a9c2)',
+    color: 'white',
+    background: 'linear-gradient(135deg, #fff, #a8d8ea)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text'
+    backgroundClip: 'text',
+    position: 'relative',
+    zIndex: 2
   },
   aboutSubtitle: {
     fontSize: '1.3rem',
-    color: '#6898af',
-    fontWeight: '300'
+    color: '#cbd5e1',
+    fontWeight: '300',
+    position: 'relative',
+    zIndex: 2
   },
   aboutContent: {
     display: 'grid',
     gridTemplateColumns: '45% 55%',
-    gap: '3rem', // Reduced gap
+    gap: '3rem',
     alignItems: 'start'
   },
   aboutImageSide: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    gap: '2rem' // Space between image and features
+    gap: '2rem'
   },
   imageCard: {
     borderRadius: '20px',
     overflow: 'hidden',
     boxShadow: '0 25px 50px rgba(0,0,0,0.15)',
     position: 'relative',
-    marginBottom: '0' // Remove bottom margin
+    marginBottom: '0'
   },
   aboutImage: {
     width: '100%',
-    height: '450px', // Slightly reduced height
+    height: '450px',
     objectFit: 'cover',
     display: 'block'
   },
@@ -532,12 +566,12 @@ const styles = {
     fontSize: '0.9rem',
     fontWeight: '500'
   },
-  // FEATURE GRID - MOVED BESIDE IMAGE
+  // FEATURE GRID
   featuresGrid: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     gap: '1rem',
-    marginTop: '0' // No top margin since it's right below image
+    marginTop: '0'
   },
   featureCard: {
     backgroundColor: 'white',
@@ -662,7 +696,7 @@ const styles = {
     fontWeight: '500'
   },
 
-  // Services Section
+  // Services Section with Reduced Containers
   servicesSection: {
     backgroundColor: '#0f172a',
     padding: '5rem 0',
@@ -692,59 +726,60 @@ const styles = {
   servicesGrid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '2rem'
+    gap: '1.5rem'
   },
   serviceCard: {
     backgroundColor: '#1e293b',
-    padding: '2.5rem 2rem',
-    borderRadius: '20px',
+    padding: '2rem 1.5rem',
+    borderRadius: '15px',
     textAlign: 'center',
     boxShadow: '0 15px 35px rgba(0,0,0,0.3)',
-    border: '2px solid #334155'
+    border: '2px solid #334155',
+    transition: 'all 0.3s ease'
   },
   serviceIconContainer: {
-    width: '80px',
-    height: '80px',
+    width: '70px',
+    height: '70px',
     borderRadius: '50%',
     backgroundColor: '#0f172a',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: '1.5rem',
+    marginBottom: '1.2rem',
     border: '2px solid #73a9c2'
   },
   serviceIcon: {
-    fontSize: '2.2rem',
+    fontSize: '1.8rem',
     color: '#73a9c2'
   },
   serviceTitle: {
-    fontSize: '1.4rem',
+    fontSize: '1.2rem',
     color: 'white',
-    marginBottom: '1rem',
+    marginBottom: '0.8rem',
     fontWeight: 'bold'
   },
   serviceDescription: {
     color: '#cbd5e1',
-    lineHeight: '1.6',
-    marginBottom: '1.5rem',
-    fontSize: '1rem'
+    lineHeight: '1.5',
+    marginBottom: '1.2rem',
+    fontSize: '0.9rem'
   },
   serviceFeatures: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '0.5rem',
+    gap: '0.4rem',
     justifyContent: 'center'
   },
   featureTag: {
     backgroundColor: '#73a9c2',
     color: 'white',
-    padding: '0.5rem 1rem',
-    borderRadius: '20px',
-    fontSize: '0.8rem',
+    padding: '0.4rem 0.8rem',
+    borderRadius: '15px',
+    fontSize: '0.75rem',
     fontWeight: '500'
   },
 
-  // Contact Section - Lighter Background
+  // Contact Section
   contactSection: {
     backgroundColor: '#f1f5f9',
     padding: '5rem 0',
@@ -893,7 +928,42 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     gap: '0.5rem'
+  },
+
+  // WhatsApp Floating Button
+  whatsappButton: { 
+    position: 'fixed', 
+    bottom: '20px', 
+    right: '20px', 
+    zIndex: 999,
+    transition: 'transform 0.3s ease'
+  },
+  whatsappIcon: { 
+    width: '60px', 
+    height: '60px',
+    borderRadius: '50%',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+    transition: 'transform 0.3s ease'
   }
 };
+
+// Add road animation
+const styleSheet = document.styleSheets[0];
+if (styleSheet) {
+  const roadAnimation = `
+    @keyframes moveRoad {
+      0% { background-position: 0 0, 30px 30px; }
+      100% { background-position: 60px 60px, 90px 90px; }
+    }
+  `;
+  styleSheet.insertRule(roadAnimation, styleSheet.cssRules.length);
+}
+
+// Add hover effect for WhatsApp button
+Object.assign(styles.whatsappButton, {
+  ':hover': {
+    transform: 'scale(1.1)'
+  }
+});
 
 export default HomePage;
