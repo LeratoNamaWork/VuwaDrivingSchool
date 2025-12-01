@@ -1,84 +1,129 @@
 import React from 'react';
+import { Car, Phone, MapPin, Mail, Facebook, Instagram, Twitter } from 'lucide-react';
 
 function Footer() {
   return (
     <footer style={styles.footer}>
       <div style={styles.container}>
         <div style={styles.footerContent}>
+          {/* Company Info */}
           <div style={styles.footerSection}>
             <div style={styles.logoContainer}>
-              <img 
-                src="/logo.jpg" 
-                alt="Vuwa Driving School" 
-                style={styles.logo}
-              />
+              <div style={styles.logoWrapper}>
+                <img 
+                  src="/logo.jpg" 
+                  alt="Vuwa Driving School" 
+                  style={styles.logo}
+                />
+              </div>
               <span style={styles.logoText}>Vuwa Driving School</span>
             </div>
             <p style={styles.footerText}>
-              Professional driving lessons in Secunda, Devon, and Embalenhle.
+              Professional driving education in Secunda, Devon, and Embalenhle. Building confident, skilled drivers for over 5 years.
             </p>
             <div style={styles.socialLinks}>
-              <a href="#" style={styles.socialLink}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
+              <a href="#" style={styles.socialLink} aria-label="Facebook">
+                <Facebook size={20} strokeWidth={2} />
               </a>
-              <a href="#" style={styles.socialLink}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.042-3.441.219-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001 12.017 0z"/>
-                </svg>
+              <a href="#" style={styles.socialLink} aria-label="Instagram">
+                <Instagram size={20} strokeWidth={2} />
+              </a>
+              <a href="#" style={styles.socialLink} aria-label="Twitter">
+                <Twitter size={20} strokeWidth={2} />
               </a>
             </div>
           </div>
           
+          {/* Quick Links */}
           <div style={styles.footerSection}>
             <h4 style={styles.footerTitle}>Quick Links</h4>
-            <button 
-              style={styles.footerLink}
-              onClick={() => document.getElementById('home').scrollIntoView({ behavior: 'smooth' })}
-            >
-              Home
-            </button>
-            <button 
-              style={styles.footerLink}
-              onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}
-            >
-              About
-            </button>
-            <button 
-              style={styles.footerLink}
-              onClick={() => document.getElementById('services').scrollIntoView({ behavior: 'smooth' })}
-            >
-              Services
-            </button>
-            <button 
-              style={styles.footerLink}
-              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-            >
-              Contact
-            </button>
+            <div style={styles.linksList}>
+              <button 
+                style={styles.footerLink}
+                onClick={() => document.getElementById('home').scrollIntoView({ behavior: 'smooth' })}
+                onMouseEnter={(e) => e.target.style.color = '#73a9c2'}
+                onMouseLeave={(e) => e.target.style.color = '#cbd5e1'}
+              >
+                Home
+              </button>
+              <button 
+                style={styles.footerLink}
+                onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}
+                onMouseEnter={(e) => e.target.style.color = '#73a9c2'}
+                onMouseLeave={(e) => e.target.style.color = '#cbd5e1'}
+              >
+                About Us
+              </button>
+              <button 
+                style={styles.footerLink}
+                onClick={() => document.getElementById('services').scrollIntoView({ behavior: 'smooth' })}
+                onMouseEnter={(e) => e.target.style.color = '#73a9c2'}
+                onMouseLeave={(e) => e.target.style.color = '#cbd5e1'}
+              >
+                Our Services
+              </button>
+              <button 
+                style={styles.footerLink}
+                onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                onMouseEnter={(e) => e.target.style.color = '#73a9c2'}
+                onMouseLeave={(e) => e.target.style.color = '#cbd5e1'}
+              >
+                Contact
+              </button>
+            </div>
           </div>
           
+          {/* Services */}
           <div style={styles.footerSection}>
-            <h4 style={styles.footerTitle}>Contact Info</h4>
-            <div style={styles.contactItem}>
-              <span style={styles.contactIcon}>📞</span>
-              <a href="tel:0790659736" style={styles.contactLink}>
-                079 065 9736
-              </a>
+            <h4 style={styles.footerTitle}>Our Services</h4>
+            <div style={styles.linksList}>
+              <span style={styles.serviceItem}>Learner's Classes</span>
+              <span style={styles.serviceItem}>Driving Lessons</span>
+              <span style={styles.serviceItem}>Code 8 License</span>
+              <span style={styles.serviceItem}>Code 10 & 14</span>
             </div>
-            
-            <div style={styles.contactItem}>
-              <span style={styles.contactIcon}>📍</span>
-              <span style={styles.contactText}>Secunda, Devon, Embalenhle</span>
+          </div>
+          
+          {/* Contact Info */}
+          <div style={styles.footerSection}>
+            <h4 style={styles.footerTitle}>Get In Touch</h4>
+            <div style={styles.contactList}>
+              <div style={styles.contactItem}>
+                <Phone size={18} color="#73a9c2" strokeWidth={2.5} />
+                <a href="tel:0790659736" style={styles.contactLink}>
+                  079 065 9736
+                </a>
+              </div>
+              
+              <div style={styles.contactItem}>
+                <MapPin size={18} color="#73a9c2" strokeWidth={2.5} />
+                <span style={styles.contactText}>
+                  Secunda, Devon<br/>Embalenhle
+                </span>
+              </div>
+
+              <div style={styles.contactItem}>
+                <Mail size={18} color="#73a9c2" strokeWidth={2.5} />
+                <span style={styles.contactText}>
+                  Mon - Fri: 7AM - 5PM
+                </span>
+              </div>
             </div>
           </div>
         </div>
         
+        {/* Footer Bottom */}
         <div style={styles.footerBottom}>
-          <p style={styles.copyright}>
-            © {new Date().getFullYear()} Vuwa Driving School. All rights reserved.
-          </p>
+          <div style={styles.bottomContent}>
+            <p style={styles.copyright}>
+              © {new Date().getFullYear()} Vuwa Driving School. All rights reserved.
+            </p>
+            <div style={styles.bottomLinks}>
+              <span style={styles.bottomLink}>Privacy Policy</span>
+              <span style={styles.divider}>•</span>
+              <span style={styles.bottomLink}>Terms of Service</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
@@ -87,21 +132,21 @@ function Footer() {
 
 const styles = {
   footer: {
-    background: 'linear-gradient(135deg, #1a2a35 0%, #0f1a21 100%)',
+    background: 'linear-gradient(135deg, #1e2f3a 0%, #0f1a21 100%)',
     color: 'white',
-    padding: '3rem 0 1rem',
-    borderTop: '3px solid #73a9c2'
+    padding: '4rem 0 0',
+    borderTop: '2px solid rgba(115, 169, 194, 0.3)'
   },
   container: {
-    maxWidth: '1200px',
+    maxWidth: '1300px',
     margin: '0 auto',
     padding: '0 2rem'
   },
   footerContent: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gridTemplateColumns: 'repeat(4, 1fr)',
     gap: '3rem',
-    marginBottom: '2rem'
+    marginBottom: '3rem'
   },
   footerSection: {
     display: 'flex',
@@ -113,16 +158,26 @@ const styles = {
     gap: '1rem',
     marginBottom: '1rem'
   },
+  logoWrapper: {
+    width: '50px',
+    height: '50px',
+    borderRadius: '10px',
+    background: 'white',
+    padding: '5px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0 4px 12px rgba(115, 169, 194, 0.2)',
+    border: '2px solid rgba(115, 169, 194, 0.3)'
+  },
   logo: {
-    width: '60px',
-    height: '60px',
-    borderRadius: '50%',
-    objectFit: 'cover',
-    border: '2px solid #73a9c2'
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain'
   },
   logoText: {
-    fontSize: '1.3rem',
-    fontWeight: 'bold',
+    fontSize: '1.2rem',
+    fontWeight: '700',
     background: 'linear-gradient(135deg, #73a9c2, #a8d8ea)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
@@ -130,76 +185,110 @@ const styles = {
   },
   footerText: {
     lineHeight: '1.6',
-    opacity: 0.9,
+    color: '#cbd5e1',
     marginBottom: '1.5rem',
-    fontSize: '0.95rem'
+    fontSize: '0.9rem'
   },
   socialLinks: {
     display: 'flex',
-    gap: '1rem'
+    gap: '0.75rem'
   },
   socialLink: {
     color: 'white',
-    opacity: 0.8,
-    transition: 'all 0.3s ease',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '40px',
-    height: '40px',
-    borderRadius: '50%',
-    backgroundColor: 'rgba(255,255,255,0.1)'
+    width: '38px',
+    height: '38px',
+    borderRadius: '10px',
+    backgroundColor: 'rgba(115, 169, 194, 0.15)',
+    border: '1px solid rgba(115, 169, 194, 0.3)',
+    transition: 'all 0.3s ease',
+    textDecoration: 'none'
   },
   footerTitle: {
-    fontSize: '1.2rem',
-    marginBottom: '1rem',
-    fontWeight: 'bold',
-    color: '#73a9c2'
+    fontSize: '1.1rem',
+    marginBottom: '1.2rem',
+    fontWeight: '700',
+    color: 'white'
+  },
+  linksList: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.75rem'
   },
   footerLink: {
-    color: 'white',
+    color: '#cbd5e1',
     background: 'none',
     border: 'none',
     textAlign: 'left',
-    padding: '0.3rem 0',
+    padding: '0',
     cursor: 'pointer',
-    opacity: 0.9,
     transition: 'all 0.3s ease',
-    fontSize: '0.95rem',
-    marginBottom: '0.5rem'
+    fontSize: '0.9rem',
+    fontWeight: '500'
+  },
+  serviceItem: {
+    color: '#cbd5e1',
+    fontSize: '0.9rem',
+    fontWeight: '500'
+  },
+  contactList: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem'
   },
   contactItem: {
     display: 'flex',
-    alignItems: 'center',
-    gap: '0.8rem',
-    marginBottom: '1rem'
-  },
-  contactIcon: {
-    fontSize: '1.1rem',
-    color: '#73a9c2'
+    alignItems: 'flex-start',
+    gap: '0.75rem'
   },
   contactLink: {
     color: 'white',
     textDecoration: 'none',
-    fontWeight: 'bold',
-    fontSize: '1rem',
+    fontWeight: '600',
+    fontSize: '0.95rem',
     transition: 'color 0.3s ease'
   },
   contactText: {
-    color: 'white',
+    color: '#cbd5e1',
     margin: 0,
-    fontSize: '0.95rem',
-    opacity: 0.9
+    fontSize: '0.9rem',
+    lineHeight: '1.5',
+    fontWeight: '500'
   },
   footerBottom: {
-    borderTop: '1px solid rgba(115, 169, 194, 0.3)',
-    paddingTop: '1.5rem',
-    textAlign: 'center'
+    borderTop: '1px solid rgba(115, 169, 194, 0.2)',
+    padding: '2rem 0'
+  },
+  bottomContent: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: '1rem'
   },
   copyright: {
-    opacity: 0.8,
+    color: '#94a3b8',
     margin: 0,
-    fontSize: '0.9rem'
+    fontSize: '0.9rem',
+    fontWeight: '500'
+  },
+  bottomLinks: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem'
+  },
+  bottomLink: {
+    color: '#94a3b8',
+    fontSize: '0.85rem',
+    cursor: 'pointer',
+    transition: 'color 0.3s ease',
+    fontWeight: '500'
+  },
+  divider: {
+    color: '#475569',
+    fontSize: '0.85rem'
   }
 };
 

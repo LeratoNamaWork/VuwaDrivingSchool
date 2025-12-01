@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Car, Users, Award, Clock, Phone, MapPin, Calendar, CheckCircle, Shield, Target, Star, Send, TrendingUp } from 'lucide-react';
 
 function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,156 +10,197 @@ function HomePage() {
 
   return (
     <main style={styles.main}>
-      {/* Hero Section with Background Image */}
+      {/* Hero Section - Redesigned */}
       <section id="home" style={styles.hero}>
         <div style={styles.heroBackground}></div>
+        <div style={styles.heroOverlay}></div>
         <div style={styles.heroContent}>
-          <h1 style={{
-            ...styles.heroTitle,
+          <div style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
             transition: 'all 0.8s ease 0.2s'
-          }}>Vuwa Driving School</h1>
-          <p style={{
-            ...styles.heroSubtitle,
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-            transition: 'all 0.8s ease 0.4s'
           }}>
-            Professional Driving Lessons in Secunda, Devon & Embalenhle
-          </p>
+            <h1 style={styles.heroTitle}>
+              Learn to Drive with<br/>
+              <span style={styles.heroTitleAccent}>Vuwa Driving School</span>
+            </h1>
+            <p style={styles.heroSubtitle}>
+              Professional driving education in Secunda, Devon & Embalenhle
+            </p>
+          </div>
+          
           <div style={{
             ...styles.heroStats,
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-            transition: 'all 0.8s ease 0.6s'
+            transition: 'all 0.8s ease 0.4s'
           }}>
-            <div style={styles.stat}>
-              <span style={styles.statNumber}>100+</span>
-              <span style={styles.statText}>Students Trained</span>
+            <div style={styles.statCard}>
+              <div style={styles.statIconBox}>
+                <Users size={28} color="#73a9c2" strokeWidth={2.5} />
+              </div>
+              <div style={styles.statInfo}>
+                <span style={styles.statNumber}>100+</span>
+                <span style={styles.statLabel}>Students</span>
+              </div>
             </div>
-            <div style={styles.stat}>
-              <span style={styles.statNumber}>98%</span>
-              <span style={styles.statText}>Pass Rate</span>
+            
+            <div style={styles.statCard}>
+              <div style={styles.statIconBox}>
+                <Award size={28} color="#73a9c2" strokeWidth={2.5} />
+              </div>
+              <div style={styles.statInfo}>
+                <span style={styles.statNumber}>98%</span>
+                <span style={styles.statLabel}>Pass Rate</span>
+              </div>
             </div>
-            <div style={styles.stat}>
-              <span style={styles.statNumber}>5+</span>
-              <span style={styles.statText}>Years Experience</span>
+            
+            <div style={styles.statCard}>
+              <div style={styles.statIconBox}>
+                <Clock size={28} color="#73a9c2" strokeWidth={2.5} />
+              </div>
+              <div style={styles.statInfo}>
+                <span style={styles.statNumber}>5+</span>
+                <span style={styles.statLabel}>Years</span>
+              </div>
             </div>
           </div>
+          
           <button 
             style={styles.ctaButton}
             onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-5px) scale(1.05)';
-              e.target.style.boxShadow = '0 15px 30px rgba(115, 169, 194, 0.6)';
+              e.target.style.transform = 'translateY(-3px) scale(1.02)';
+              e.target.style.boxShadow = '0 15px 40px rgba(115, 169, 194, 0.4)';
             }}
             onMouseLeave={(e) => {
               e.target.style.transform = 'translateY(0) scale(1)';
-              e.target.style.boxShadow = '0 8px 25px rgba(115, 169, 194, 0.4)';
+              e.target.style.boxShadow = '0 10px 30px rgba(115, 169, 194, 0.3)';
             }}
             onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
           >
-            <span style={styles.buttonText}>Book Your Lesson Today</span>
-            <span style={styles.buttonArrow}>→</span>
+            <span>Book Your First Lesson</span>
+            <Car size={20} style={{ marginLeft: '8px' }} />
           </button>
         </div>
       </section>
 
-      {/* About Section with Street Line Background */}
+      {/* About Section */}
       <section id="about" style={styles.aboutSection}>
-        <div style={styles.aboutContainer}>
-          <div style={styles.aboutHeader}>
-            <div style={styles.streetBackground}>
-              <div style={styles.streetLines}></div>
-              <h2 style={styles.aboutMainTitle}>About Vuwa Driving School</h2>
-              <p style={styles.aboutSubtitle}>
-                Your Trusted Partner in Driving Excellence Since 2019
-              </p>
-            </div>
+        <div style={styles.container}>
+          <div style={styles.sectionHeader}>
+            <div style={styles.sectionBadge}>About Us</div>
+            <h2 style={styles.sectionTitle}>About Vuwa Driving School</h2>
+            <p style={styles.sectionSubtitle}>
+              Your Trusted Partner in Driving Excellence Since 2019
+            </p>
           </div>
           
           <div style={styles.aboutContent}>
             <div style={styles.aboutImageSide}>
-              <div style={styles.imageCard}>
+              <div style={styles.imageWrapper}>
                 <img 
                   src="./image2.jpg" 
-                  alt="Professional driving instructor teaching student"
+                  alt="Professional driving instructor"
                   style={styles.aboutImage}
                 />
-                <div style={styles.imageOverlay}></div>
-              </div>
-              <div style={styles.experienceBadge}>
-                <div style={styles.badgeContent}>
-                  <span style={styles.badgeNumber}>5+</span>
-                  <span style={styles.badgeText}>Years Experience</span>
-                </div>
+                <div style={styles.imageGradient}></div>
               </div>
 
-              {/* FEATURE BLOCKS MOVED HERE - BESIDE THE IMAGE */}
+              {/* Feature Grid Below Image */}
               <div style={styles.featuresGrid}>
-                <div style={styles.featureCard}>
-                  <div style={styles.featureIcon}>👨‍🏫</div>
-                  <div>
-                    <h4 style={styles.featureTitle}>Expert Instructors</h4>
-                    <p style={styles.featureText}>Certified professionals with years of experience</p>
+                <div style={styles.featureBox}>
+                  <div style={styles.featureIconBox}>
+                    <Users size={24} color="#73a9c2" strokeWidth={2.5} />
                   </div>
+                  <h4 style={styles.featureTitle}>Expert Instructors</h4>
+                  <p style={styles.featureText}>Certified professionals with years of experience</p>
                 </div>
-                <div style={styles.featureCard}>
-                  <div style={styles.featureIcon}>🛡️</div>
-                  <div>
-                    <h4 style={styles.featureTitle}>Safety First</h4>
-                    <p style={styles.featureText}>Modern vehicles with dual controls</p>
+                
+                <div style={styles.featureBox}>
+                  <div style={styles.featureIconBox}>
+                    <Shield size={24} color="#73a9c2" strokeWidth={2.5} />
                   </div>
+                  <h4 style={styles.featureTitle}>Safety First</h4>
+                  <p style={styles.featureText}>Modern vehicles with dual controls</p>
                 </div>
-                <div style={styles.featureCard}>
-                  <div style={styles.featureIcon}>📅</div>
-                  <div>
-                    <h4 style={styles.featureTitle}>Flexible Scheduling</h4>
-                    <p style={styles.featureText}>Lessons tailored to your availability</p>
+                
+                <div style={styles.featureBox}>
+                  <div style={styles.featureIconBox}>
+                    <Calendar size={24} color="#73a9c2" strokeWidth={2.5} />
                   </div>
+                  <h4 style={styles.featureTitle}>Flexible Scheduling</h4>
+                  <p style={styles.featureText}>Lessons tailored to your availability</p>
                 </div>
-                <div style={styles.featureCard}>
-                  <div style={styles.featureIcon}>💯</div>
-                  <div>
-                    <h4 style={styles.featureTitle}>High Success Rate</h4>
-                    <p style={styles.featureText}>98% first-time pass rate</p>
+                
+                <div style={styles.featureBox}>
+                  <div style={styles.featureIconBox}>
+                    <Award size={24} color="#73a9c2" strokeWidth={2.5} />
                   </div>
+                  <h4 style={styles.featureTitle}>High Success Rate</h4>
+                  <p style={styles.featureText}>98% first-time pass rate</p>
                 </div>
               </div>
             </div>
             
             <div style={styles.aboutTextSide}>
-              <div style={styles.aboutCard}>
-                <h3 style={styles.aboutCardTitle}>Our Story</h3>
-                <p style={styles.aboutCardText}>
+              <div style={styles.aboutDescription}>
+                <h3 style={styles.aboutHeading}>Our Story</h3>
+                <p style={styles.aboutText}>
                   For over <strong>5 years</strong>, Vuwa Driving School has been the premier choice for professional driving education in Secunda, Devon, and Embalenhle. Founded with a passion for road safety and student success, we've helped hundreds of students become confident, skilled drivers.
                 </p>
-                
-                <div style={styles.missionVision}>
-                  <div style={styles.missionCard}>
-                    <div style={styles.missionIcon}>🎯</div>
+                <p style={styles.aboutText}>
+                  Our certified instructors use modern teaching methods and well-maintained vehicles to ensure you receive the highest quality education. We're committed to your success from your first lesson to passing your driving test.
+                </p>
+              </div>
+
+              {/* Mission and Vision */}
+              <div style={styles.missionVisionContainer}>
+                <div style={styles.missionCard}>
+                  <div style={styles.missionHeader}>
+                    <div style={styles.missionIconBox}>
+                      <Target size={28} color="#73a9c2" strokeWidth={2.5} />
+                    </div>
                     <h4 style={styles.missionTitle}>Our Mission</h4>
-                    <p style={styles.missionText}>To provide exceptional driving education that empowers students with lifelong safe driving skills</p>
                   </div>
-                  <div style={styles.visionCard}>
-                    <div style={styles.visionIcon}>⭐</div>
-                    <h4 style={styles.visionTitle}>Our Vision</h4>
-                    <p style={styles.visionText}>To be the most trusted driving school in Mpumalanga, known for excellence and student success</p>
-                  </div>
+                  <p style={styles.missionText}>
+                    To provide exceptional driving education that empowers students with lifelong safe driving skills and confidence on the road.
+                  </p>
                 </div>
 
-                <div style={styles.achievements}>
-                  <div style={styles.achievement}>
-                    <span style={styles.achievementNumber}>1000+</span>
-                    <span style={styles.achievementText}>Lessons Taught</span>
+                <div style={styles.visionCard}>
+                  <div style={styles.visionHeader}>
+                    <div style={styles.visionIconBox}>
+                      <TrendingUp size={28} color="#73a9c2" strokeWidth={2.5} />
+                    </div>
+                    <h4 style={styles.visionTitle}>Our Vision</h4>
                   </div>
-                  <div style={styles.achievement}>
-                    <span style={styles.achievementNumber}>98%</span>
-                    <span style={styles.achievementText}>Pass Rate</span>
+                  <p style={styles.visionText}>
+                    To be the most trusted driving school in Mpumalanga, known for excellence, professionalism, and student success.
+                  </p>
+                </div>
+              </div>
+
+              {/* Achievement Stats */}
+              <div style={styles.statsRow}>
+                <div style={styles.statBox}>
+                  <CheckCircle size={20} color="white" strokeWidth={2.5} />
+                  <div>
+                    <span style={styles.statBoxNumber}>1000+</span>
+                    <span style={styles.statBoxLabel}>Lessons Taught</span>
                   </div>
-                  <div style={styles.achievement}>
-                    <span style={styles.achievementNumber}>50+</span>
-                    <span style={styles.achievementText}>5-Star Reviews</span>
+                </div>
+                <div style={styles.statBox}>
+                  <Target size={20} color="white" strokeWidth={2.5} />
+                  <div>
+                    <span style={styles.statBoxNumber}>98%</span>
+                    <span style={styles.statBoxLabel}>Pass Rate</span>
+                  </div>
+                </div>
+                <div style={styles.statBox}>
+                  <Star size={20} color="white" strokeWidth={2.5} />
+                  <div>
+                    <span style={styles.statBoxNumber}>50+</span>
+                    <span style={styles.statBoxLabel}>5-Star Reviews</span>
                   </div>
                 </div>
               </div>
@@ -167,153 +209,219 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Services Section with Reduced Containers */}
+      {/* Services Section */}
       <section id="services" style={styles.servicesSection}>
-        <div style={styles.servicesContainer}>
-          <div style={styles.servicesHeader}>
-            <h2 style={styles.servicesMainTitle}>Our Driving Programs</h2>
-            <p style={styles.servicesSubtitle}>
-              Comprehensive driving courses designed for all skill levels and license codes
+        <div style={styles.container}>
+          <div style={styles.sectionHeader}>
+            <div style={styles.sectionBadgeDark}>Our Services</div>
+            <h2 style={styles.sectionTitleDark}>Comprehensive Driving Programs</h2>
+            <p style={styles.sectionSubtitleDark}>
+              Professional courses designed for all skill levels and license codes
             </p>
           </div>
           
           <div style={styles.servicesGrid}>
             <div style={styles.serviceCard}>
               <div style={styles.serviceIconContainer}>
-                <div style={styles.serviceIcon}>📝</div>
+                <CheckCircle size={36} color="#73a9c2" strokeWidth={2} />
               </div>
               <h3 style={styles.serviceTitle}>Learner's Classes</h3>
               <p style={styles.serviceDescription}>
-                Comprehensive theoretical classes covering road signs, rules, and safe driving principles.
+                Comprehensive theoretical classes covering road signs, rules, and safe driving principles to prepare you for your learner's test.
               </p>
               <div style={styles.serviceFeatures}>
-                <span style={styles.featureTag}>Road Signs</span>
-                <span style={styles.featureTag}>Traffic Rules</span>
-                <span style={styles.featureTag}>Test Prep</span>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>Road Signs</span>
+                </div>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>Traffic Rules</span>
+                </div>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>Test Preparation</span>
+                </div>
               </div>
             </div>
 
             <div style={styles.serviceCard}>
               <div style={styles.serviceIconContainer}>
-                <div style={styles.serviceIcon}>🚗</div>
+                <Car size={36} color="#73a9c2" strokeWidth={2} />
               </div>
               <h3 style={styles.serviceTitle}>Driving Lessons</h3>
               <p style={styles.serviceDescription}>
-                Practical driving lessons for all skill levels, from beginners to experienced drivers.
+                Practical driving lessons for all skill levels, from complete beginners to experienced drivers looking to improve.
               </p>
               <div style={styles.serviceFeatures}>
-                <span style={styles.featureTag}>Beginner to Advanced</span>
-                <span style={styles.featureTag}>Manual & Automatic</span>
-                <span style={styles.featureTag}>City & Highway</span>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>Beginner to Advanced</span>
+                </div>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>Manual & Automatic</span>
+                </div>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>City & Highway</span>
+                </div>
               </div>
             </div>
 
             <div style={styles.serviceCard}>
               <div style={styles.serviceIconContainer}>
-                <div style={styles.serviceIcon}>📋</div>
+                <Award size={36} color="#73a9c2" strokeWidth={2} />
               </div>
               <h3 style={styles.serviceTitle}>Code 8 License</h3>
               <p style={styles.serviceDescription}>
-                Complete training for Code 8 licenses including cars, bakkies, and minibuses.
+                Complete training program for Code 8 licenses including cars, bakkies, and minibuses with full test preparation.
               </p>
               <div style={styles.serviceFeatures}>
-                <span style={styles.featureTag}>Light Vehicles</span>
-                <span style={styles.featureTag}>Comprehensive Training</span>
-                <span style={styles.featureTag}>Test Preparation</span>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>Light Vehicles</span>
+                </div>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>Full Training</span>
+                </div>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>Test Ready</span>
+                </div>
               </div>
             </div>
 
             <div style={styles.serviceCard}>
               <div style={styles.serviceIconContainer}>
-                <div style={styles.serviceIcon}>🚛</div>
+                <Shield size={36} color="#73a9c2" strokeWidth={2} />
               </div>
               <h3 style={styles.serviceTitle}>Code 10 & 14</h3>
               <p style={styles.serviceDescription}>
-                Professional heavy vehicle training for Code 10 and Code 14 licenses.
+                Professional heavy vehicle training for Code 10 and Code 14 licenses with experienced instructors.
               </p>
               <div style={styles.serviceFeatures}>
-                <span style={styles.featureTag}>Heavy Vehicles</span>
-                <span style={styles.featureTag}>Professional Training</span>
-                <span style={styles.featureTag}>Load Handling</span>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>Heavy Vehicles</span>
+                </div>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>Professional Training</span>
+                </div>
+                <div style={styles.serviceFeatureItem}>
+                  <CheckCircle size={16} color="#73a9c2" strokeWidth={2.5} />
+                  <span>Load Handling</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section - Lighter Background */}
+      {/* Contact Section */}
       <section id="contact" style={styles.contactSection}>
-        <div style={styles.contactContainer}>
-          <h2 style={styles.contactMainTitle}>Start Your Driving Journey</h2>
-          <p style={styles.contactSubtitle}>
-            Contact us today to schedule your first lesson or get more information
-          </p>
+        <div style={styles.container}>
+          <div style={styles.sectionHeader}>
+            <div style={styles.sectionBadge}>Contact Us</div>
+            <h2 style={styles.sectionTitle}>Start Your Driving Journey</h2>
+            <p style={styles.sectionSubtitle}>
+              Get in touch today to schedule your first lesson or learn more about our programs
+            </p>
+          </div>
           
           <div style={styles.contactContent}>
-            <div style={styles.contactInfo}>
-              <div style={styles.contactItem}>
-                <div style={styles.contactIcon}>
-                  <div style={styles.blueIcon}>📞</div>
+            <div style={styles.contactInfoSection}>
+              <div style={styles.contactCard}>
+                <div style={styles.contactIconWrapper}>
+                  <Phone size={28} color="#73a9c2" strokeWidth={2.5} />
                 </div>
                 <div>
-                  <h4 style={styles.contactTitle}>Call Us</h4>
+                  <h4 style={styles.contactCardTitle}>Call Us</h4>
                   <a href="tel:0790659736" style={styles.contactLink}>079 065 9736</a>
+                  <p style={styles.contactCardText}>Monday - Friday: 7AM - 5PM</p>
                 </div>
               </div>
               
-              <div style={styles.contactItem}>
-                <div style={styles.contactIcon}>
-                  <div style={styles.blueIcon}>📍</div>
+              <div style={styles.contactCard}>
+                <div style={styles.contactIconWrapper}>
+                  <MapPin size={28} color="#73a9c2" strokeWidth={2.5} />
                 </div>
                 <div>
-                  <h4 style={styles.contactTitle}>Areas We Serve</h4>
-                  <p style={styles.contactText}>Secunda, Devon, Embalenhle</p>
+                  <h4 style={styles.contactCardTitle}>Service Areas</h4>
+                  <p style={styles.contactCardText}>
+                    Secunda<br/>
+                    Devon<br/>
+                    Embalenhle
+                  </p>
                 </div>
               </div>
               
-              <div style={styles.contactItem}>
-                <div style={styles.contactIcon}>
-                  <div style={styles.blueIcon}>🕐</div>
+              <div style={styles.contactCard}>
+                <div style={styles.contactIconWrapper}>
+                  <Clock size={28} color="#73a9c2" strokeWidth={2.5} />
                 </div>
                 <div>
-                  <h4 style={styles.contactTitle}>Operating Hours</h4>
-                  <p style={styles.contactText}>
-                    Monday - Friday: 7:00 AM - 5:00 PM<br/>
-                    Weekend: By appointment
+                  <h4 style={styles.contactCardTitle}>Operating Hours</h4>
+                  <p style={styles.contactCardText}>
+                    Mon - Fri: 7:00 AM - 5:00 PM<br/>
+                    Sat - Sun: By Appointment
                   </p>
                 </div>
               </div>
             </div>
             
-            <div style={styles.contactForm}>
+            <div style={styles.contactFormSection}>
               <form style={styles.form}>
-                <div style={styles.formRow}>
-                  <input type="text" placeholder="Full Name" style={styles.input} required />
-                  <input type="tel" placeholder="Phone Number" style={styles.input} required />
+                <div style={styles.formGroup}>
+                  <input 
+                    type="text" 
+                    placeholder="Full Name" 
+                    style={styles.input} 
+                    required 
+                  />
                 </div>
-                <select style={styles.select} required>
-                  <option value="">Select Service</option>
-                  <option value="learners">Learner's Classes</option>
-                  <option value="lessons">Driving Lessons</option>
-                  <option value="code8">Code 8 License</option>
-                  <option value="code10">Code 10 License</option>
-                  <option value="code14">Code 14 License</option>
-                </select>
-                <textarea placeholder="Your Message or Preferred Schedule" rows="4" style={styles.textarea} required></textarea>
+                <div style={styles.formGroup}>
+                  <input 
+                    type="tel" 
+                    placeholder="Phone Number" 
+                    style={styles.input} 
+                    required 
+                  />
+                </div>
+                <div style={styles.formGroup}>
+                  <select style={styles.select} required>
+                    <option value="">Select Service</option>
+                    <option value="learners">Learner's Classes</option>
+                    <option value="lessons">Driving Lessons</option>
+                    <option value="code8">Code 8 License</option>
+                    <option value="code10">Code 10 License</option>
+                    <option value="code14">Code 14 License</option>
+                  </select>
+                </div>
+                <div style={styles.formGroup}>
+                  <textarea 
+                    placeholder="Your message or preferred schedule" 
+                    rows="4" 
+                    style={styles.textarea} 
+                    required
+                  ></textarea>
+                </div>
                 <button 
                   type="submit" 
                   style={styles.submitButton}
                   onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateY(-3px) scale(1.02)';
-                    e.target.style.boxShadow = '0 15px 30px rgba(115, 169, 194, 0.6)';
+                    e.target.style.transform = 'translateY(-3px)';
+                    e.target.style.boxShadow = '0 15px 35px rgba(115, 169, 194, 0.4)';
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateY(0) scale(1)';
-                    e.target.style.boxShadow = '0 8px 20px rgba(115, 169, 194, 0.4)';
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 10px 25px rgba(115, 169, 194, 0.3)';
                   }}
                 >
-                  <span style={styles.buttonText}>Send Enrollment Request</span>
-                  <span style={styles.buttonArrow}>→</span>
+                  <span>Send Enrollment Request</span>
+                  <Send size={18} style={{ marginLeft: '8px' }} />
                 </button>
               </form>
             </div>
@@ -327,6 +435,8 @@ function HomePage() {
         target="_blank" 
         rel="noopener noreferrer" 
         style={styles.whatsappButton}
+        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
       >
         <img src="/whatsapp.jpeg" alt="WhatsApp" style={styles.whatsappIcon}/>
       </a>
@@ -339,21 +449,19 @@ const styles = {
     flex: 1,
     width: '100%',
     overflowX: 'hidden',
-    fontFamily: "'Arial', sans-serif"
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
   },
   
-  // Hero Section
+  // Hero Section - Redesigned (Shorter & Better)
   hero: {
-    background: 'linear-gradient(135deg, rgba(69, 101, 116, 0.9) 0%, rgba(58, 85, 97, 0.9) 50%, rgba(81, 118, 136, 0.9) 100%)',
-    color: 'white',
-    padding: '5rem 0',
-    textAlign: 'center',
     position: 'relative',
-    overflow: 'hidden',
-    minHeight: '75vh',
+    minHeight: '60vh',
     display: 'flex',
     alignItems: 'center',
-    width: '100%'
+    justifyContent: 'center',
+    overflow: 'hidden',
+    color: 'white',
+    padding: '4rem 0'
   },
   heroBackground: {
     position: 'absolute',
@@ -361,158 +469,183 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundImage: 'url("/image1.jpeg")',
+    backgroundImage: 'url(./image1.jpeg)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    filter: 'blur(8px) brightness(0.7)',
-    zIndex: 1
+    backgroundRepeat: 'no-repeat'
   },
-  heroContent: {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    position: 'relative',
-    zIndex: 2,
-    width: '100%',
-    padding: '0 2rem'
-  },
-  heroTitle: {
-    fontSize: '3.5rem',
-    marginBottom: '1.5rem',
-    fontWeight: 'bold',
-    textShadow: '2px 2px 8px rgba(0,0,0,0.5)',
-    background: 'linear-gradient(135deg, #fff, #e0f7ff)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text'
-  },
-  heroSubtitle: {
-    fontSize: '1.3rem',
-    marginBottom: '2.5rem',
-    opacity: 0.95,
-    fontWeight: '300',
-    textShadow: '1px 1px 4px rgba(0,0,0,0.5)',
-    maxWidth: '600px',
-    marginLeft: 'auto',
-    marginRight: 'auto'
-  },
-  heroStats: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '3rem',
-    marginBottom: '2.5rem'
-  },
-  stat: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '1.5rem',
-    background: 'rgba(255,255,255,0.1)',
-    borderRadius: '15px',
-    border: '1px solid rgba(255,255,255,0.2)',
-    minWidth: '140px',
-    backdropFilter: 'blur(10px)'
-  },
-  statNumber: {
-    fontSize: '2.2rem',
-    fontWeight: 'bold',
-    marginBottom: '0.5rem',
-    textShadow: '1px 1px 4px rgba(0,0,0,0.5)',
-    color: 'white'
-  },
-  statText: {
-    fontSize: '1rem',
-    opacity: 0.9,
-    textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
-    fontWeight: '500'
-  },
-  ctaButton: {
-    background: 'linear-gradient(135deg, #73a9c2 0%, #5c879b 100%)',
-    color: 'white',
-    border: 'none',
-    padding: '1.2rem 2.5rem',
-    fontSize: '1.1rem',
-    borderRadius: '50px',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-    transition: 'all 0.3s ease',
-    boxShadow: '0 8px 25px rgba(115, 169, 194, 0.4)',
-    textTransform: 'uppercase',
-    letterSpacing: '1px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    margin: '0 auto'
-  },
-  buttonText: {
-    position: 'relative',
-    zIndex: 2
-  },
-  buttonArrow: {
-    position: 'relative',
-    zIndex: 2,
-    transition: 'transform 0.3s ease',
-    fontSize: '1.2rem'
-  },
-
-  // About Section with Street Line Background
-  aboutSection: {
-    backgroundColor: '#f8fafc',
-    padding: '5rem 0',
-    width: '100%'
-  },
-  aboutContainer: {
-    maxWidth: '1400px',
-    margin: '0 auto',
-    padding: '0 2rem'
-  },
-  aboutHeader: {
-    textAlign: 'center',
-    marginBottom: '4rem'
-  },
-  streetBackground: {
-    position: 'relative',
-    padding: '3rem 2rem',
-    background: 'linear-gradient(135deg, #1e2f3a 0%, #2d4a5a 100%)',
-    borderRadius: '20px',
-    overflow: 'hidden',
-    boxShadow: '0 15px 35px rgba(0,0,0,0.1)'
-  },
-  streetLines: {
+  heroOverlay: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    background: `
-      linear-gradient(90deg, transparent 49%, #73a9c2 49%, #73a9c2 51%, transparent 51%) 0 0 / 60px 60px,
-      linear-gradient(90deg, transparent 49%, #73a9c2 49%, #73a9c2 51%, transparent 51%) 30px 30px / 60px 60px
-    `,
-    opacity: 0.3,
-    animation: 'moveRoad 20s linear infinite'
+    background: 'linear-gradient(135deg, rgba(30, 47, 58, 0.93) 0%, rgba(45, 74, 90, 0.90) 50%, rgba(69, 101, 116, 0.87) 100%)',
+    zIndex: 1
   },
-  aboutMainTitle: {
-    fontSize: '3rem',
+  heroContent: {
+    position: 'relative',
+    zIndex: 2,
+    textAlign: 'center',
+    maxWidth: '1000px',
+    padding: '0 2rem'
+  },
+  heroTitle: {
+    fontSize: '3.5rem',
+    fontWeight: '800',
     marginBottom: '1rem',
-    fontWeight: 'bold',
-    color: 'white',
-    background: 'linear-gradient(135deg, #fff, #a8d8ea)',
+    letterSpacing: '-0.02em',
+    lineHeight: '1.1',
+    color: 'white'
+  },
+  heroTitleAccent: {
+    background: 'linear-gradient(135deg, #73a9c2 0%, #a8d8ea 100%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
-    position: 'relative',
-    zIndex: 2
+    display: 'inline-block'
   },
-  aboutSubtitle: {
-    fontSize: '1.3rem',
+  heroSubtitle: {
+    fontSize: '1.2rem',
+    marginBottom: '2.5rem',
+    fontWeight: '400',
     color: '#cbd5e1',
-    fontWeight: '300',
-    position: 'relative',
-    zIndex: 2
+    lineHeight: '1.6'
+  },
+  heroStats: {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '1.5rem',
+    marginBottom: '2.5rem',
+    flexWrap: 'wrap'
+  },
+  statCard: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    padding: '1.2rem 1.8rem',
+    background: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: '12px',
+    backdropFilter: 'blur(10px)',
+    border: '1px solid rgba(255, 255, 255, 0.15)',
+    transition: 'all 0.3s ease',
+    minWidth: '160px'
+  },
+  statIconBox: {
+    width: '50px',
+    height: '50px',
+    background: 'rgba(255, 255, 255, 0.95)',
+    borderRadius: '10px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  statInfo: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start'
+  },
+  statNumber: {
+    fontSize: '1.8rem',
+    fontWeight: '800',
+    color: 'white',
+    lineHeight: '1'
+  },
+  statLabel: {
+    fontSize: '0.85rem',
+    color: '#cbd5e1',
+    fontWeight: '500',
+    marginTop: '0.25rem'
+  },
+  ctaButton: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'linear-gradient(135deg, #73a9c2 0%, #5c879b 100%)',
+    color: 'white',
+    border: 'none',
+    padding: '1.1rem 2.5rem',
+    fontSize: '1.05rem',
+    borderRadius: '50px',
+    cursor: 'pointer',
+    fontWeight: '600',
+    transition: 'all 0.3s ease',
+    boxShadow: '0 10px 30px rgba(115, 169, 194, 0.3)',
+    letterSpacing: '0.5px'
+  },
+
+  // Container
+  container: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 2rem'
+  },
+
+  // Section Headers
+  sectionHeader: {
+    textAlign: 'center',
+    marginBottom: '4rem'
+  },
+  sectionBadge: {
+    display: 'inline-block',
+    padding: '0.5rem 1.5rem',
+    background: 'rgba(115, 169, 194, 0.1)',
+    color: '#73a9c2',
+    borderRadius: '50px',
+    fontSize: '0.9rem',
+    fontWeight: '600',
+    marginBottom: '1rem',
+    border: '1px solid rgba(115, 169, 194, 0.2)'
+  },
+  sectionBadgeDark: {
+    display: 'inline-block',
+    padding: '0.5rem 1.5rem',
+    background: 'rgba(115, 169, 194, 0.15)',
+    color: '#73a9c2',
+    borderRadius: '50px',
+    fontSize: '0.9rem',
+    fontWeight: '600',
+    marginBottom: '1rem',
+    border: '1px solid rgba(115, 169, 194, 0.3)'
+  },
+  sectionTitle: {
+    fontSize: '2.8rem',
+    fontWeight: '800',
+    color: '#1e2f3a',
+    marginBottom: '1rem',
+    lineHeight: '1.2'
+  },
+  sectionTitleDark: {
+    fontSize: '2.8rem',
+    fontWeight: '800',
+    color: 'white',
+    marginBottom: '1rem',
+    lineHeight: '1.2'
+  },
+  sectionSubtitle: {
+    fontSize: '1.2rem',
+    color: '#64748b',
+    fontWeight: '400',
+    maxWidth: '600px',
+    margin: '0 auto'
+  },
+  sectionSubtitleDark: {
+    fontSize: '1.2rem',
+    color: '#94a3b8',
+    fontWeight: '400',
+    maxWidth: '600px',
+    margin: '0 auto'
+  },
+
+  // About Section
+  aboutSection: {
+    backgroundColor: '#ffffff',
+    padding: '6rem 0'
   },
   aboutContent: {
     display: 'grid',
     gridTemplateColumns: '45% 55%',
-    gap: '3rem',
+    gap: '4rem',
     alignItems: 'start'
   },
   aboutImageSide: {
@@ -521,12 +654,11 @@ const styles = {
     flexDirection: 'column',
     gap: '2rem'
   },
-  imageCard: {
+  imageWrapper: {
+    position: 'relative',
     borderRadius: '20px',
     overflow: 'hidden',
-    boxShadow: '0 25px 50px rgba(0,0,0,0.15)',
-    position: 'relative',
-    marginBottom: '0'
+    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.12)'
   },
   aboutImage: {
     width: '100%',
@@ -534,71 +666,47 @@ const styles = {
     objectFit: 'cover',
     display: 'block'
   },
-  imageOverlay: {
+  imageGradient: {
     position: 'absolute',
-    top: 0,
+    bottom: 0,
     left: 0,
     right: 0,
-    bottom: 0,
-    background: 'linear-gradient(135deg, rgba(115, 169, 194, 0.1), rgba(30, 47, 58, 0.2))'
+    height: '50%',
+    background: 'linear-gradient(to top, rgba(30, 47, 58, 0.7), transparent)'
   },
-  experienceBadge: {
-    position: 'absolute',
-    bottom: '-20px',
-    right: '-20px',
-    background: 'linear-gradient(135deg, #73a9c2, #5c879b)',
-    borderRadius: '20px',
-    padding: '1.5rem',
-    boxShadow: '0 15px 30px rgba(115, 169, 194, 0.4)',
-    color: 'white'
-  },
-  badgeContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '0.5rem'
-  },
-  badgeNumber: {
-    fontSize: '2rem',
-    fontWeight: 'bold'
-  },
-  badgeText: {
-    fontSize: '0.9rem',
-    fontWeight: '500'
-  },
-  // FEATURE GRID
   featuresGrid: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
-    gap: '1rem',
-    marginTop: '0'
+    gap: '1rem'
   },
-  featureCard: {
-    backgroundColor: 'white',
-    padding: '1.2rem',
+  featureBox: {
+    background: '#f8fafc',
+    padding: '1.5rem',
     borderRadius: '12px',
-    boxShadow: '0 8px 25px rgba(0,0,0,0.06)',
-    border: '1px solid #f1f5f9',
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: '0.8rem',
-    transition: 'transform 0.3s ease'
+    border: '1px solid #e2e8f0',
+    transition: 'all 0.3s ease'
   },
-  featureIcon: {
-    fontSize: '1.8rem',
-    marginTop: '0.2rem',
-    flexShrink: 0
+  featureIconBox: {
+    width: '48px',
+    height: '48px',
+    background: 'white',
+    borderRadius: '12px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '1rem',
+    boxShadow: '0 4px 12px rgba(115, 169, 194, 0.15)'
   },
   featureTitle: {
-    fontSize: '1rem',
-    fontWeight: 'bold',
+    fontSize: '1.05rem',
+    fontWeight: '700',
     color: '#1e2f3a',
-    marginBottom: '0.3rem'
+    marginBottom: '0.5rem'
   },
   featureText: {
-    fontSize: '0.85rem',
+    fontSize: '0.9rem',
     color: '#64748b',
-    lineHeight: '1.3',
+    lineHeight: '1.5',
     margin: 0
   },
   aboutTextSide: {
@@ -606,122 +714,131 @@ const styles = {
     flexDirection: 'column',
     gap: '2rem'
   },
-  aboutCard: {
-    backgroundColor: 'white',
-    padding: '2.5rem',
-    borderRadius: '20px',
-    boxShadow: '0 15px 35px rgba(0,0,0,0.08)',
-    border: '1px solid #e2e8f0'
+  aboutDescription: {
+    marginBottom: '1rem'
   },
-  aboutCardTitle: {
-    fontSize: '1.8rem',
-    marginBottom: '1rem',
+  aboutHeading: {
+    fontSize: '2rem',
+    fontWeight: '700',
     color: '#1e2f3a',
-    fontWeight: 'bold'
+    marginBottom: '1.5rem'
   },
-  aboutCardText: {
-    fontSize: '1.1rem',
-    lineHeight: '1.7',
+  aboutText: {
+    fontSize: '1.05rem',
     color: '#475569',
-    marginBottom: '2rem'
+    lineHeight: '1.7',
+    marginBottom: '1rem'
   },
-  missionVision: {
+  
+  // Mission and Vision - Same Blue Color
+  missionVisionContainer: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     gap: '1.5rem',
-    marginBottom: '2rem'
+    marginBottom: '1rem'
   },
   missionCard: {
-    padding: '1.5rem',
-    backgroundColor: '#f0f7ff',
-    borderRadius: '15px',
-    borderLeft: '4px solid #73a9c2'
+    background: 'linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%)',
+    padding: '2rem',
+    borderRadius: '16px',
+    border: '2px solid #bae6fd',
+    boxShadow: '0 4px 15px rgba(115, 169, 194, 0.1)'
   },
-  visionCard: {
-    padding: '1.5rem',
-    backgroundColor: '#fff7ed',
-    borderRadius: '15px',
-    borderLeft: '4px solid #f59e0b'
+  missionHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    marginBottom: '1rem'
   },
-  missionIcon: {
-    fontSize: '2rem',
-    marginBottom: '0.5rem'
-  },
-  visionIcon: {
-    fontSize: '2rem',
-    marginBottom: '0.5rem'
+  missionIconBox: {
+    width: '56px',
+    height: '56px',
+    background: 'white',
+    borderRadius: '12px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0 4px 12px rgba(115, 169, 194, 0.2)'
   },
   missionTitle: {
-    fontSize: '1.2rem',
-    fontWeight: 'bold',
+    fontSize: '1.4rem',
+    fontWeight: '700',
     color: '#1e2f3a',
-    marginBottom: '0.5rem'
-  },
-  visionTitle: {
-    fontSize: '1.2rem',
-    fontWeight: 'bold',
-    color: '#1e2f3a',
-    marginBottom: '0.5rem'
+    margin: 0
   },
   missionText: {
-    fontSize: '0.9rem',
+    fontSize: '1rem',
     color: '#475569',
-    lineHeight: '1.5'
+    lineHeight: '1.6',
+    margin: 0
+  },
+  visionCard: {
+    background: 'linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%)',
+    padding: '2rem',
+    borderRadius: '16px',
+    border: '2px solid #bfdbfe',
+    boxShadow: '0 4px 15px rgba(115, 169, 194, 0.1)'
+  },
+  visionHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    marginBottom: '1rem'
+  },
+  visionIconBox: {
+    width: '56px',
+    height: '56px',
+    background: 'white',
+    borderRadius: '12px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0 4px 12px rgba(115, 169, 194, 0.2)'
+  },
+  visionTitle: {
+    fontSize: '1.4rem',
+    fontWeight: '700',
+    color: '#1e2f3a',
+    margin: 0
   },
   visionText: {
-    fontSize: '0.9rem',
+    fontSize: '1rem',
     color: '#475569',
-    lineHeight: '1.5'
+    lineHeight: '1.6',
+    margin: 0
   },
-  achievements: {
+  
+  statsRow: {
     display: 'flex',
-    justifyContent: 'space-between',
     gap: '1rem'
   },
-  achievement: {
+  statBox: {
+    flex: 1,
+    background: 'linear-gradient(135deg, #73a9c2 0%, #5c879b 100%)',
+    padding: '1.2rem',
+    borderRadius: '12px',
     display: 'flex',
-    flexDirection: 'column',
     alignItems: 'center',
-    textAlign: 'center'
-  },
-  achievementNumber: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: '#73a9c2',
-    marginBottom: '0.3rem'
-  },
-  achievementText: {
-    fontSize: '0.8rem',
-    color: '#64748b',
-    fontWeight: '500'
-  },
-
-  // Services Section with Reduced Containers
-  servicesSection: {
-    backgroundColor: '#0f172a',
-    padding: '5rem 0',
-    width: '100%'
-  },
-  servicesContainer: {
-    maxWidth: '1400px',
-    margin: '0 auto',
-    padding: '0 2rem'
-  },
-  servicesHeader: {
-    textAlign: 'center',
-    marginBottom: '4rem'
-  },
-  servicesMainTitle: {
-    fontSize: '2.8rem',
-    marginBottom: '1rem',
-    fontWeight: 'bold',
+    gap: '0.8rem',
     color: 'white'
   },
-  servicesSubtitle: {
-    fontSize: '1.2rem',
-    marginBottom: '0',
-    color: '#cbd5e1',
-    fontWeight: '300'
+  statBoxNumber: {
+    fontSize: '1.5rem',
+    fontWeight: '800',
+    display: 'block',
+    lineHeight: '1'
+  },
+  statBoxLabel: {
+    fontSize: '0.8rem',
+    display: 'block',
+    opacity: 0.9,
+    marginTop: '0.25rem'
+  },
+
+  // Services Section
+  servicesSection: {
+    background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+    padding: '6rem 0'
   },
   servicesGrid: {
     display: 'grid',
@@ -729,241 +846,195 @@ const styles = {
     gap: '1.5rem'
   },
   serviceCard: {
-    backgroundColor: '#1e293b',
-    padding: '2rem 1.5rem',
-    borderRadius: '15px',
-    textAlign: 'center',
-    boxShadow: '0 15px 35px rgba(0,0,0,0.3)',
-    border: '2px solid #334155',
+    background: 'rgba(255, 255, 255, 0.05)',
+    padding: '2rem',
+    borderRadius: '16px',
+    border: '1px solid rgba(255, 255, 255, 0.08)',
+    backdropFilter: 'blur(10px)',
     transition: 'all 0.3s ease'
   },
   serviceIconContainer: {
-    width: '70px',
-    height: '70px',
-    borderRadius: '50%',
-    backgroundColor: '#0f172a',
+    width: '72px',
+    height: '72px',
+    background: 'rgba(115, 169, 194, 0.1)',
+    borderRadius: '16px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: '1.2rem',
-    border: '2px solid #73a9c2'
-  },
-  serviceIcon: {
-    fontSize: '1.8rem',
-    color: '#73a9c2'
+    marginBottom: '1.5rem',
+    border: '1px solid rgba(115, 169, 194, 0.2)'
   },
   serviceTitle: {
-    fontSize: '1.2rem',
+    fontSize: '1.3rem',
+    fontWeight: '700',
     color: 'white',
-    marginBottom: '0.8rem',
-    fontWeight: 'bold'
+    marginBottom: '1rem'
   },
   serviceDescription: {
+    fontSize: '0.95rem',
     color: '#cbd5e1',
-    lineHeight: '1.5',
-    marginBottom: '1.2rem',
-    fontSize: '0.9rem'
+    lineHeight: '1.6',
+    marginBottom: '1.5rem'
   },
   serviceFeatures: {
     display: 'flex',
-    flexWrap: 'wrap',
-    gap: '0.4rem',
-    justifyContent: 'center'
+    flexDirection: 'column',
+    gap: '0.6rem'
   },
-  featureTag: {
-    backgroundColor: '#73a9c2',
-    color: 'white',
-    padding: '0.4rem 0.8rem',
-    borderRadius: '15px',
-    fontSize: '0.75rem',
-    fontWeight: '500'
+  serviceFeatureItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    fontSize: '0.9rem',
+    color: '#94a3b8'
   },
 
   // Contact Section
   contactSection: {
-    backgroundColor: '#f1f5f9',
-    padding: '5rem 0',
-    width: '100%'
-  },
-  contactContainer: {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '0 2rem'
-  },
-  contactMainTitle: {
-    fontSize: '2.8rem',
-    textAlign: 'center',
-    marginBottom: '1rem',
-    fontWeight: 'bold',
-    color: '#1e2f3a'
-  },
-  contactSubtitle: {
-    fontSize: '1.2rem',
-    textAlign: 'center',
-    marginBottom: '3rem',
-    color: '#64748b'
+    backgroundColor: '#f8fafc',
+    padding: '6rem 0'
   },
   contactContent: {
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '4rem'
+    gridTemplateColumns: '1fr 1.2fr',
+    gap: '3rem'
   },
-  contactInfo: {
+  contactInfoSection: {
     display: 'flex',
     flexDirection: 'column',
     gap: '1.5rem'
   },
-  contactItem: {
+  contactCard: {
+    background: 'white',
+    padding: '2rem',
+    borderRadius: '16px',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+    border: '1px solid #e2e8f0',
     display: 'flex',
     alignItems: 'flex-start',
     gap: '1.5rem',
-    padding: '2rem',
-    backgroundColor: 'white',
-    borderRadius: '15px',
-    borderLeft: '4px solid #73a9c2',
-    boxShadow: '0 8px 25px rgba(0,0,0,0.06)',
-    transition: 'transform 0.3s ease'
+    transition: 'all 0.3s ease'
   },
-  contactIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  blueIcon: {
-    fontSize: '2rem',
-    color: '#73a9c2',
-    backgroundColor: '#f0f7ff',
-    borderRadius: '50%',
-    width: '70px',
-    height: '70px',
+  contactIconWrapper: {
+    width: '60px',
+    height: '60px',
+    background: 'rgba(115, 169, 194, 0.1)',
+    borderRadius: '12px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    boxShadow: '0 8px 20px rgba(115, 169, 194, 0.2)'
+    flexShrink: 0
   },
-  contactTitle: {
-    fontSize: '1.3rem',
+  contactCardTitle: {
+    fontSize: '1.2rem',
+    fontWeight: '700',
     color: '#1e2f3a',
-    marginBottom: '0.5rem',
-    fontWeight: 'bold'
+    marginBottom: '0.5rem'
   },
   contactLink: {
-    fontSize: '1.4rem',
+    fontSize: '1.3rem',
+    fontWeight: '700',
     color: '#73a9c2',
     textDecoration: 'none',
-    fontWeight: 'bold'
+    display: 'block',
+    marginBottom: '0.5rem'
   },
-  contactText: {
-    color: '#475569',
-    margin: 0,
+  contactCardText: {
+    fontSize: '0.95rem',
+    color: '#64748b',
     lineHeight: '1.6',
-    fontSize: '1rem'
+    margin: 0
   },
-  contactForm: {
-    backgroundColor: 'white',
-    padding: '3rem',
+  contactFormSection: {
+    background: 'white',
+    padding: '2.5rem',
     borderRadius: '20px',
-    boxShadow: '0 15px 35px rgba(0,0,0,0.08)',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
     border: '1px solid #e2e8f0'
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '1.5rem'
+    gap: '1.25rem'
   },
-  formRow: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '1rem'
+  formGroup: {
+    width: '100%'
   },
   input: {
-    padding: '1rem 1.2rem',
+    width: '100%',
+    padding: '1rem 1.25rem',
     border: '2px solid #e2e8f0',
-    borderRadius: '10px',
+    borderRadius: '12px',
     fontSize: '1rem',
-    backgroundColor: 'white',
     color: '#1e2f3a',
+    backgroundColor: '#f8fafc',
     outline: 'none',
-    transition: 'all 0.3s ease'
+    transition: 'all 0.3s ease',
+    fontFamily: 'inherit',
+    boxSizing: 'border-box'
   },
   select: {
-    padding: '1rem 1.2rem',
+    width: '100%',
+    padding: '1rem 1.25rem',
     border: '2px solid #e2e8f0',
-    borderRadius: '10px',
+    borderRadius: '12px',
     fontSize: '1rem',
-    backgroundColor: 'white',
     color: '#1e2f3a',
-    cursor: 'pointer',
+    backgroundColor: '#f8fafc',
     outline: 'none',
-    transition: 'all 0.3s ease'
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    fontFamily: 'inherit',
+    boxSizing: 'border-box'
   },
   textarea: {
-    padding: '1rem 1.2rem',
+    width: '100%',
+    padding: '1rem 1.25rem',
     border: '2px solid #e2e8f0',
-    borderRadius: '10px',
+    borderRadius: '12px',
     fontSize: '1rem',
-    backgroundColor: 'white',
     color: '#1e2f3a',
+    backgroundColor: '#f8fafc',
+    outline: 'none',
     resize: 'vertical',
     minHeight: '120px',
-    outline: 'none',
     fontFamily: 'inherit',
-    transition: 'all 0.3s ease'
+    transition: 'all 0.3s ease',
+    boxSizing: 'border-box'
   },
   submitButton: {
-    background: 'linear-gradient(135deg, #73a9c2 0%, #5c879b 100%)',
-    color: 'white',
-    border: 'none',
-    padding: '1.3rem 2rem',
-    fontSize: '1.1rem',
-    borderRadius: '10px',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-    transition: 'all 0.3s ease',
-    textTransform: 'uppercase',
-    letterSpacing: '1px',
-    marginTop: '1rem',
-    boxShadow: '0 8px 20px rgba(115, 169, 194, 0.4)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '0.5rem'
+    background: 'linear-gradient(135deg, #73a9c2 0%, #5c879b 100%)',
+    color: 'white',
+    border: 'none',
+    padding: '1.2rem 2rem',
+    fontSize: '1.05rem',
+    borderRadius: '12px',
+    cursor: 'pointer',
+    fontWeight: '600',
+    transition: 'all 0.3s ease',
+    boxShadow: '0 10px 25px rgba(115, 169, 194, 0.3)',
+    marginTop: '0.5rem'
   },
 
-  // WhatsApp Floating Button
-  whatsappButton: { 
-    position: 'fixed', 
-    bottom: '20px', 
-    right: '20px', 
-    zIndex: 999,
-    transition: 'transform 0.3s ease'
+  // WhatsApp Button
+  whatsappButton: {
+    position: 'fixed',
+    bottom: '30px',
+    right: '30px',
+    zIndex: 1000,
+    transition: 'transform 0.3s ease',
+    boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4)',
+    borderRadius: '50%'
   },
-  whatsappIcon: { 
-    width: '60px', 
+  whatsappIcon: {
+    width: '60px',
     height: '60px',
     borderRadius: '50%',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-    transition: 'transform 0.3s ease'
+    display: 'block'
   }
 };
-
-// Add road animation
-const styleSheet = document.styleSheets[0];
-if (styleSheet) {
-  const roadAnimation = `
-    @keyframes moveRoad {
-      0% { background-position: 0 0, 30px 30px; }
-      100% { background-position: 60px 60px, 90px 90px; }
-    }
-  `;
-  styleSheet.insertRule(roadAnimation, styleSheet.cssRules.length);
-}
-
-// Add hover effect for WhatsApp button
-Object.assign(styles.whatsappButton, {
-  ':hover': {
-    transform: 'scale(1.1)'
-  }
-});
 
 export default HomePage;
