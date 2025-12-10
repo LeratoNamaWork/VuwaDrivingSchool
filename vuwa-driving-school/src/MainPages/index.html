@@ -1,0 +1,2421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuwa Driving School - Learn. Drive. Succeed.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* HEADER STYLES */
+        .header {
+            background: rgba(30, 47, 58, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(115, 169, 194, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            background: rgba(30, 47, 58, 0.98);
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: white;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(115, 169, 194, 0.3);
+            border: 2px solid rgba(115, 169, 194, 0.3);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .logo-wrapper {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #73a9c2, #a8d8ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 768px) {
+            .logo-text {
+                font-size: 1.3rem;
+            }
+        }
+
+        .logo-tagline {
+            font-size: 0.6rem;
+            color: #94a3b8;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .logo-tagline {
+                display: block;
+            }
+        }
+
+        .nav {
+            display: none;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        @media (min-width: 992px) {
+            .nav {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            color: white;
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 0.7rem 1.3rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            letter-spacing: 0.02em;
+            font-family: inherit;
+        }
+
+        .nav-link:hover {
+            background: rgba(115, 169, 194, 0.1);
+        }
+
+        .nav-link.active {
+            background: rgba(115, 169, 194, 0.2);
+            color: #a8d8ea;
+            font-weight: 600;
+        }
+
+        .active-indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #73a9c2;
+            position: absolute;
+            bottom: 4px;
+        }
+
+        .header-cta-button {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #73a9c2 0%, #5c879b 100%);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(115, 169, 194, 0.3);
+            letter-spacing: 0.02em;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 992px) {
+            .header-cta-button {
+                display: flex;
+            }
+        }
+
+        /* HAMBURGER MENU FOR MOBILE */
+        .hamburger {
+            display: block;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        @media (min-width: 992px) {
+            .hamburger {
+                display: none;
+            }
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgba(30, 47, 58, 0.98);
+            z-index: 1000;
+            padding: 5rem 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-link {
+            color: white;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-align: left;
+            font-family: inherit;
+            width: 100%;
+            text-transform: capitalize;
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+            background: rgba(115, 169, 194, 0.2);
+            color: #a8d8ea;
+        }
+
+        .mobile-cta-button {
+            margin-top: 1.5rem;
+            background: linear-gradient(135deg, #73a9c2 0%, #5c879b 100%);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(115, 169, 194, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(115, 169, 194, 0.4);
+        }
+
+        /* Overlay for mobile menu */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: white;
+            padding: 5rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                min-height: 60vh;
+                padding: 4rem 0;
+            }
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('./image1.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        @media (max-width: 768px) {
+            .hero-background {
+                background-attachment: scroll;
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(30, 47, 58, 0.93) 0%, rgba(45, 74, 90, 0.90) 50%, rgba(69, 101, 116, 0.87) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: white;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        @media (min-width: 640px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3.2rem;
+                line-height: 1.1;
+            }
+        }
+
+        .hero-title-accent {
+            background: linear-gradient(135deg, #73a9c2 0%, #a8d8ea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            color: #cbd5e1;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        @media (min-width: 640px) {
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 2.5rem;
+            }
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        @media (min-width: 640px) {
+            .hero-stats {
+                gap: 1.5rem;
+            }
+        }
+
+        .stat-card {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            min-width: 140px;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        @media (max-width: 639px) {
+            .stat-card {
+                min-width: calc(50% - 0.5rem);
+                max-width: none;
+            }
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-icon-box {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .stat-icon-box {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        .stat-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+        }
+
+        @media (min-width: 768px) {
+            .stat-number {
+                font-size: 1.8rem;
+            }
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+
+        @media (min-width: 768px) {
+            .stat-label {
+                font-size: 0.85rem;
+            }
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #73a9c2 0%, #5c879b 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(115, 169, 194, 0.3);
+            letter-spacing: 0.5px;
+            font-family: inherit;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+            opacity: 0;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .cta-button {
+                width: auto;
+                padding: 1.1rem 2.5rem;
+                font-size: 1.05rem;
+                max-width: none;
+            }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(115, 169, 194, 0.4);
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* SECTION HEADERS */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-header {
+                margin-bottom: 4rem;
+            }
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(115, 169, 194, 0.1);
+            color: #73a9c2;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(115, 169, 194, 0.2);
+        }
+
+        .section-badge-dark {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(115, 169, 194, 0.15);
+            color: #73a9c2;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(115, 169, 194, 0.3);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e2f3a;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 640px) {
+            .section-title {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        .section-title-dark {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 640px) {
+            .section-title-dark {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .section-title-dark {
+                font-size: 2.8rem;
+            }
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: #64748b;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 640px) {
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .section-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+
+        .section-subtitle-dark {
+            font-size: 1rem;
+            color: #94a3b8;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 640px) {
+            .section-subtitle-dark {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .section-subtitle-dark {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ABOUT SECTION */
+        .about-section {
+            background-color: #ffffff;
+            padding: 4rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .about-section {
+                padding: 6rem 0;
+            }
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        @media (min-width: 992px) {
+            .about-content {
+                display: grid;
+                grid-template-columns: 45% 55%;
+                gap: 4rem;
+                align-items: start;
+            }
+        }
+
+        .about-image-side {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .image-wrapper {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .about-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (min-width: 640px) {
+            .about-image {
+                height: 400px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .about-image {
+                height: 450px;
+            }
+        }
+
+        .image-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(30, 47, 58, 0.7), transparent);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-box {
+            background: #f8fafc;
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(115, 169, 194, 0.15);
+            border-color: #73a9c2;
+        }
+
+        .feature-icon-box {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(115, 169, 194, 0.15);
+        }
+
+        .feature-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1e2f3a;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .about-text-side {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .about-description {
+            margin-bottom: 1rem;
+        }
+
+        .about-heading {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e2f3a;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-heading {
+                font-size: 2rem;
+            }
+        }
+
+        .about-text {
+            font-size: 1rem;
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-text {
+                font-size: 1.05rem;
+            }
+        }
+
+        /* MISSION AND VISION */
+        .mission-vision-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .mission-vision-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .mission-card {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 2px solid #bae6fd;
+            box-shadow: 0 4px 15px rgba(115, 169, 194, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .mission-card {
+                padding: 2rem;
+            }
+        }
+
+        .mission-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .mission-icon-box {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(115, 169, 194, 0.2);
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .mission-icon-box {
+                width: 56px;
+                height: 56px;
+            }
+        }
+
+        .mission-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e2f3a;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .mission-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        .mission-text {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .mission-text {
+                font-size: 1rem;
+            }
+        }
+
+        .vision-card {
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 2px solid #bfdbfe;
+            box-shadow: 0 4px 15px rgba(115, 169, 194, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .vision-card {
+                padding: 2rem;
+            }
+        }
+
+        .vision-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .vision-icon-box {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(115, 169, 194, 0.2);
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .vision-icon-box {
+                width: 56px;
+                height: 56px;
+            }
+        }
+
+        .vision-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e2f3a;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .vision-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        .vision-text {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .vision-text {
+                font-size: 1rem;
+            }
+        }
+
+        .stats-row {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .stats-row {
+                flex-direction: row;
+                gap: 1rem;
+            }
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #73a9c2 0%, #5c879b 100%);
+            padding: 1.2rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: white;
+            flex: 1;
+        }
+
+        .stat-box-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-box-label {
+            font-size: 0.8rem;
+            display: block;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+
+        /* SERVICES SECTION */
+        .services-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 4rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .services-section {
+                padding: 6rem 0;
+            }
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .services-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .service-card {
+                padding: 2rem;
+            }
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(115, 169, 194, 0.3);
+        }
+
+        .service-icon-container {
+            width: 60px;
+            height: 60px;
+            background: rgba(115, 169, 194, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(115, 169, 194, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .service-icon-container {
+                width: 72px;
+                height: 72px;
+            }
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .service-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        .service-description {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .service-description {
+                font-size: 0.95rem;
+            }
+        }
+
+        .service-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .service-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        @media (min-width: 768px) {
+            .service-feature-item {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            background-color: #f8fafc;
+            padding: 4rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .contact-section {
+                padding: 6rem 0;
+            }
+        }
+
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .contact-content {
+                display: grid;
+                grid-template-columns: 1fr 1.2fr;
+                gap: 3rem;
+            }
+        }
+
+        .contact-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .contact-card {
+                padding: 2rem;
+            }
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(115, 169, 194, 0.15);
+            border-color: #73a9c2;
+        }
+
+        .contact-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            background: rgba(115, 169, 194, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .contact-icon-wrapper {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .contact-card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e2f3a;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .contact-card-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        .contact-link {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #73a9c2;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .contact-link {
+                font-size: 1.3rem;
+            }
+        }
+
+        .contact-link:hover {
+            color: #5c879b;
+        }
+
+        .contact-card-text {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .contact-card-text {
+                font-size: 0.95rem;
+            }
+        }
+
+        .contact-form-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        @media (min-width: 768px) {
+            .contact-form-section {
+                padding: 2.5rem;
+            }
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            width: 100%;
+        }
+
+        .input, .select, .textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #1e2f3a;
+            background-color: #f8fafc;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        .select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2373a9c2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        .input:focus, .select:focus, .textarea:focus {
+            border-color: #73a9c2;
+            box-shadow: 0 0 0 3px rgba(115, 169, 194, 0.1);
+        }
+
+        .textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #73a9c2 0%, #5c879b 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            font-size: 1.05rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(115, 169, 194, 0.3);
+            margin-top: 0.5rem;
+            font-family: inherit;
+            width: 100%;
+        }
+
+        @media (min-width: 640px) {
+            .submit-button {
+                width: auto;
+            }
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(115, 169, 194, 0.4);
+        }
+
+        /* WHATSAPP BUTTON */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            border-radius: 50%;
+            display: inline-block;
+            text-decoration: none;
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (min-width: 768px) {
+            .whatsapp-button {
+                bottom: 30px;
+                right: 30px;
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-icon {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* FOOTER STYLES */
+        .footer {
+            background: linear-gradient(135deg, #1e2f3a 0%, #0f1a21 100%);
+            color: white;
+            padding: 3rem 0 0;
+            border-top: 2px solid rgba(115, 169, 194, 0.3);
+            margin-top: auto;
+        }
+
+        @media (min-width: 768px) {
+            .footer {
+                padding: 4rem 0 0;
+            }
+        }
+
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: white;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(115, 169, 194, 0.2);
+            border: 2px solid rgba(115, 169, 194, 0.3);
+        }
+
+        .footer-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer-logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #73a9c2, #a8d8ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-text {
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .social-link {
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background-color: rgba(115, 169, 194, 0.15);
+            border: 1px solid rgba(115, 169, 194, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background-color: rgba(115, 169, 194, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-link {
+            color: #cbd5e1;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: inherit;
+        }
+
+        .footer-link:hover {
+            color: #73a9c2;
+        }
+
+        .service-item {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .footer-contact-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact-link:hover {
+            color: #73a9c2;
+        }
+
+        .footer-contact-text {
+            color: #cbd5e1;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(115, 169, 194, 0.2);
+            padding: 2rem 0;
+        }
+
+        .bottom-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .bottom-content {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        .copyright {
+            color: #94a3b8;
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .bottom-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bottom-link {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .bottom-link:hover {
+            color: #73a9c2;
+        }
+
+        .divider {
+            color: #475569;
+            font-size: 0.85rem;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* UTILITY CLASSES */
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <div class="logo-container" onclick="scrollToSection('home')">
+                <div class="logo-wrapper">
+                    <img src="./logo.jpg" alt="Vuwa Driving School" class="logo">
+                </div>
+                <div class="logo-text-container">
+                    <span class="logo-text">Vuwa Driving School</span>
+                    <span class="logo-tagline">Learn. Drive. Succeed.</span>
+                </div>
+            </div>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav" id="nav" aria-label="Main navigation">
+                <button class="nav-link active" onclick="scrollToSection('home')">
+                    Home
+                    <div class="active-indicator"></div>
+                </button>
+                <button class="nav-link" onclick="scrollToSection('about')">
+                    About
+                </button>
+                <button class="nav-link" onclick="scrollToSection('services')">
+                    Services
+                </button>
+                <button class="nav-link" onclick="scrollToSection('contact')">
+                    Contact
+                </button>
+            </nav>
+
+            <button class="header-cta-button" onclick="scrollToSection('contact')">
+                <i class="fas fa-car" style="margin-right: 6px;"></i>
+                <span>Book Now</span>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="overlay" id="overlay"></div>
+        <div class="mobile-nav" id="mobileNav">
+            <button class="mobile-nav-link active" onclick="scrollToSection('home'); toggleMobileNav()">
+                Home
+            </button>
+            <button class="mobile-nav-link" onclick="scrollToSection('about'); toggleMobileNav()">
+                About Us
+            </button>
+            <button class="mobile-nav-link" onclick="scrollToSection('services'); toggleMobileNav()">
+                Our Services
+            </button>
+            <button class="mobile-nav-link" onclick="scrollToSection('contact'); toggleMobileNav()">
+                Contact
+            </button>
+            <button class="mobile-cta-button" onclick="scrollToSection('contact'); toggleMobileNav()">
+                <i class="fas fa-car" style="margin-right: 8px;"></i>
+                Book Now
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-background"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div>
+                    <h1 class="hero-title">
+                        Learn to Drive with<br/>
+                        <span class="hero-title-accent">Vuwa Driving School</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Professional driving education in Secunda, Devon & Embalenhle
+                    </p>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon-box">
+                            <i class="fas fa-users" style="color: #73a9c2; font-size: 24px;"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">Students</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon-box">
+                            <i class="fas fa-award" style="color: #73a9c2; font-size: 24px;"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">Pass Rate</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon-box">
+                            <i class="fas fa-clock" style="color: #73a9c2; font-size: 24px;"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Years</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="cta-button" onclick="scrollToSection('contact')">
+                    <span>Book Your First Lesson</span>
+                    <i class="fas fa-car" style="margin-left: 8px;"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">About Us</div>
+                    <h2 class="section-title">About Vuwa Driving School</h2>
+                    <p class="section-subtitle">
+                        Your Trusted Partner in Driving Excellence Since 2019
+                    </p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-image-side">
+                        <div class="image-wrapper">
+                            <img 
+                                src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                                alt="Professional driving instructor"
+                                class="about-image"
+                            >
+                            <div class="image-gradient"></div>
+                        </div>
+
+                        <!-- Feature Grid Below Image -->
+                        <div class="features-grid">
+                            <div class="feature-box">
+                                <div class="feature-icon-box">
+                                    <i class="fas fa-users" style="color: #73a9c2; font-size: 24px;"></i>
+                                </div>
+                                <h4 class="feature-title">Expert Instructors</h4>
+                                <p class="feature-text">Certified professionals with years of experience</p>
+                            </div>
+                            
+                            <div class="feature-box">
+                                <div class="feature-icon-box">
+                                    <i class="fas fa-shield-alt" style="color: #73a9c2; font-size: 24px;"></i>
+                                </div>
+                                <h4 class="feature-title">Safety First</h4>
+                                <p class="feature-text">Modern vehicles with dual controls</p>
+                            </div>
+                            
+                            <div class="feature-box">
+                                <div class="feature-icon-box">
+                                    <i class="fas fa-calendar-alt" style="color: #73a9c2; font-size: 24px;"></i>
+                                </div>
+                                <h4 class="feature-title">Flexible Scheduling</h4>
+                                <p class="feature-text">Lessons tailored to your availability</p>
+                            </div>
+                            
+                            <div class="feature-box">
+                                <div class="feature-icon-box">
+                                    <i class="fas fa-award" style="color: #73a9c2; font-size: 24px;"></i>
+                                </div>
+                                <h4 class="feature-title">High Success Rate</h4>
+                                <p class="feature-text">98% first-time pass rate</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-text-side">
+                        <div class="about-description">
+                            <h3 class="about-heading">Our Story</h3>
+                            <p class="about-text">
+                                For over <strong>5 years</strong>, Vuwa Driving School has been the premier choice for professional driving education in Secunda, Devon, and Embalenhle. Founded with a passion for road safety and student success, we've helped hundreds of students become confident, skilled drivers.
+                            </p>
+                            <p class="about-text">
+                                Our certified instructors use modern teaching methods and well-maintained vehicles to ensure you receive the highest quality education. We're committed to your success from your first lesson to passing your driving test.
+                            </p>
+                        </div>
+
+                        <!-- Mission and Vision -->
+                        <div class="mission-vision-container">
+                            <div class="mission-card">
+                                <div class="mission-header">
+                                    <div class="mission-icon-box">
+                                        <i class="fas fa-bullseye" style="color: #73a9c2; font-size: 28px;"></i>
+                                    </div>
+                                    <h4 class="mission-title">Our Mission</h4>
+                                </div>
+                                <p class="mission-text">
+                                    To provide exceptional driving education that empowers students with lifelong safe driving skills and confidence on the road.
+                                </p>
+                            </div>
+
+                            <div class="vision-card">
+                                <div class="vision-header">
+                                    <div class="vision-icon-box">
+                                        <i class="fas fa-chart-line" style="color: #73a9c2; font-size: 28px;"></i>
+                                    </div>
+                                    <h4 class="vision-title">Our Vision</h4>
+                                </div>
+                                <p class="vision-text">
+                                    To be the most trusted driving school in Mpumalanga, known for excellence, professionalism, and student success.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Achievement Stats -->
+                        <div class="stats-row">
+                            <div class="stat-box">
+                                <i class="fas fa-check-circle" style="color: white; font-size: 20px;"></i>
+                                <div>
+                                    <span class="stat-box-number">1000+</span>
+                                    <span class="stat-box-label">Lessons Taught</span>
+                                </div>
+                            </div>
+                            <div class="stat-box">
+                                <i class="fas fa-bullseye" style="color: white; font-size: 20px;"></i>
+                                <div>
+                                    <span class="stat-box-number">98%</span>
+                                    <span class="stat-box-label">Pass Rate</span>
+                                </div>
+                            </div>
+                            <div class="stat-box">
+                                <i class="fas fa-star" style="color: white; font-size: 20px;"></i>
+                                <div>
+                                    <span class="stat-box-number">50+</span>
+                                    <span class="stat-box-label">5-Star Reviews</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge-dark">Our Services</div>
+                    <h2 class="section-title-dark">Comprehensive Driving Programs</h2>
+                    <p class="section-subtitle-dark">
+                        Professional courses designed for all skill levels and license codes
+                    </p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon-container">
+                            <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 36px;"></i>
+                        </div>
+                        <h3 class="service-title">Learner's Classes</h3>
+                        <p class="service-description">
+                            Comprehensive theoretical classes covering road signs, rules, and safe driving principles to prepare you for your learner's test.
+                        </p>
+                        <div class="service-features">
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>Road Signs</span>
+                            </div>
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>Traffic Rules</span>
+                            </div>
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>Test Preparation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon-container">
+                            <i class="fas fa-car" style="color: #73a9c2; font-size: 36px;"></i>
+                        </div>
+                        <h3 class="service-title">Driving Lessons</h3>
+                        <p class="service-description">
+                            Practical driving lessons for all skill levels, from complete beginners to experienced drivers looking to improve.
+                        </p>
+                        <div class="service-features">
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>Beginner to Advanced</span>
+                            </div>
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>Manual & Automatic</span>
+                            </div>
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>City & Highway</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon-container">
+                            <i class="fas fa-award" style="color: #73a9c2; font-size: 36px;"></i>
+                        </div>
+                        <h3 class="service-title">Code 8 License</h3>
+                        <p class="service-description">
+                            Complete training program for Code 8 licenses including cars, bakkies, and minibuses with full test preparation.
+                        </p>
+                        <div class="service-features">
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>Light Vehicles</span>
+                            </div>
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>Full Training</span>
+                            </div>
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>Test Ready</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon-container">
+                            <i class="fas fa-shield-alt" style="color: #73a9c2; font-size: 36px;"></i>
+                        </div>
+                        <h3 class="service-title">Code 10 & 14</h3>
+                        <p class="service-description">
+                            Professional heavy vehicle training for Code 10 and Code 14 licenses with experienced instructors.
+                        </p>
+                        <div class="service-features">
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>Heavy Vehicles</span>
+                            </div>
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>Professional Training</span>
+                            </div>
+                            <div class="service-feature-item">
+                                <i class="fas fa-check-circle" style="color: #73a9c2; font-size: 16px;"></i>
+                                <span>Load Handling</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">Contact Us</div>
+                    <h2 class="section-title">Start Your Driving Journey</h2>
+                    <p class="section-subtitle">
+                        Get in touch today to schedule your first lesson or learn more about our programs
+                    </p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info-section">
+                        <div class="contact-card">
+                            <div class="contact-icon-wrapper">
+                                <i class="fas fa-phone" style="color: #73a9c2; font-size: 28px;"></i>
+                            </div>
+                            <div>
+                                <h4 class="contact-card-title">Call Us</h4>
+                                <a href="tel:0790659736" class="contact-link">079 065 9736</a>
+                                <p class="contact-card-text">Monday - Friday: 7AM - 5PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon-wrapper">
+                                <i class="fas fa-map-marker-alt" style="color: #73a9c2; font-size: 28px;"></i>
+                            </div>
+                            <div>
+                                <h4 class="contact-card-title">Service Areas</h4>
+                                <p class="contact-card-text">
+                                    Secunda<br/>
+                                    Devon<br/>
+                                    Embalenhle
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon-wrapper">
+                                <i class="fas fa-clock" style="color: #73a9c2; font-size: 28px;"></i>
+                            </div>
+                            <div>
+                                <h4 class="contact-card-title">Operating Hours</h4>
+                                <p class="contact-card-text">
+                                    Mon - Fri: 7:00 AM - 5:00 PM<br/>
+                                    Sat - Sun: By Appointment
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-section">
+                        <form class="form" id="contactForm">
+                            <div class="form-group">
+                                <input 
+                                    type="text" 
+                                    placeholder="Full Name" 
+                                    class="input" 
+                                    required 
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input 
+                                    type="tel" 
+                                    placeholder="Phone Number" 
+                                    class="input" 
+                                    required 
+                                >
+                            </div>
+                            <div class="form-group">
+                                <select class="select" required>
+                                    <option value="">Select Service</option>
+                                    <option value="learners">Learner's Classes</option>
+                                    <option value="lessons">Driving Lessons</option>
+                                    <option value="code8">Code 8 License</option>
+                                    <option value="code10">Code 10 License</option>
+                                    <option value="code14">Code 14 License</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea 
+                                    placeholder="Your message or preferred schedule" 
+                                    rows="4" 
+                                    class="textarea" 
+                                    required
+                                ></textarea>
+                            </div>
+                            <button 
+                                type="submit" 
+                                class="submit-button"
+                            >
+                                <span>Send Enrollment Request</span>
+                                <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WhatsApp Floating Button -->
+        <a 
+            href="https://wa.me/27790659736?text=Hello%20Vuwa%20Driving%20School!" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="whatsapp-button"
+            id="whatsappButton"
+            aria-label="Contact us on WhatsApp"
+        >
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+        </a>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Company Info -->
+                <div class="footer-section">
+                    <div class="footer-logo-container">
+                        <div class="footer-logo-wrapper">
+                            <img 
+                                src="./logo.jpg" 
+                                alt="Vuwa Driving School" 
+                                class="footer-logo"
+                            >
+                        </div>
+                        <span class="footer-logo-text">Vuwa Driving School</span>
+                    </div>
+                    <p class="footer-text">
+                        Professional driving education in Secunda, Devon, and Embalenhle. Building confident, skilled drivers for over 5 years.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <div class="links-list">
+                        <button 
+                            class="footer-link"
+                            onclick="scrollToSection('home')"
+                        >
+                            Home
+                        </button>
+                        <button 
+                            class="footer-link"
+                            onclick="scrollToSection('about')"
+                        >
+                            About Us
+                        </button>
+                        <button 
+                            class="footer-link"
+                            onclick="scrollToSection('services')"
+                        >
+                            Our Services
+                        </button>
+                        <button 
+                            class="footer-link"
+                            onclick="scrollToSection('contact')"
+                        >
+                            Contact
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div class="footer-section">
+                    <h4 class="footer-title">Our Services</h4>
+                    <div class="links-list">
+                        <span class="service-item">Learner's Classes</span>
+                        <span class="service-item">Driving Lessons</span>
+                        <span class="service-item">Code 8 License</span>
+                        <span class="service-item">Code 10 & 14</span>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h4 class="footer-title">Get In Touch</h4>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <i class="fas fa-phone" style="color: #73a9c2; font-size: 18px;"></i>
+                            <a href="tel:0790659736" class="footer-contact-link">
+                                079 065 9736
+                            </a>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt" style="color: #73a9c2; font-size: 18px;"></i>
+                            <span class="footer-contact-text">
+                                Secunda, Devon<br>Embalenhle
+                            </span>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-clock" style="color: #73a9c2; font-size: 18px;"></i>
+                            <span class="footer-contact-text">
+                                Mon - Fri: 7AM - 5PM
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="bottom-content">
+                    <p class="copyright">
+                        © <span id="currentYear"></span> Vuwa Driving School. All rights reserved.
+                    </p>
+                    <div class="bottom-links">
+                        <span class="bottom-link">Privacy Policy</span>
+                        <span class="divider">•</span>
+                        <span class="bottom-link">Terms of Service</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Mobile navigation toggle
+        function toggleMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            const overlay = document.getElementById('overlay');
+            const hamburger = document.getElementById('hamburger');
+            
+            mobileNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            
+            if (mobileNav.classList.contains('active')) {
+                hamburger.innerHTML = '<i class="fas fa-times"></i>';
+                document.body.style.overflow = 'hidden';
+            } else {
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        // Initialize mobile navigation
+        document.getElementById('hamburger').addEventListener('click', toggleMobileNav);
+        document.getElementById('overlay').addEventListener('click', toggleMobileNav);
+        
+        // Close mobile nav when clicking on a link
+        document.querySelectorAll('.mobile-nav-link, .mobile-cta-button').forEach(link => {
+            link.addEventListener('click', toggleMobileNav);
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Update active nav link
+            updateActiveNavLink();
+        });
+        
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const headerHeight = document.getElementById('header').offsetHeight;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        // Update active nav link
+        function updateActiveNavLink() {
+            const sections = ['home', 'about', 'services', 'contact'];
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const navLink = document.querySelector(`.nav-link[onclick*="${section}"]`);
+                    const mobileNavLink = document.querySelector(`.mobile-nav-link[onclick*="${section}"]`);
+                    
+                    const elementTop = element.offsetTop;
+                    const elementBottom = elementTop + element.offsetHeight;
+                    
+                    if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+                        // Update desktop nav
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('active');
+                            link.querySelector('.active-indicator')?.remove();
+                        });
+                        
+                        if (navLink) {
+                            navLink.classList.add('active');
+                            const indicator = document.createElement('div');
+                            indicator.className = 'active-indicator';
+                            navLink.appendChild(indicator);
+                        }
+                        
+                        // Update mobile nav
+                        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        
+                        if (mobileNavLink) {
+                            mobileNavLink.classList.add('active');
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = this.querySelector('input[type="text"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            const service = this.querySelector('select').value;
+            const message = this.querySelector('textarea').value;
+            
+            // Create WhatsApp message
+            const whatsappMessage = `Hello Vuwa Driving School!%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AService: ${encodeURIComponent(service)}%0AMessage: ${encodeURIComponent(message)}`;
+            
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/27790659736?text=${whatsappMessage}`, '_blank');
+            
+            // Reset form
+            this.reset();
+            
+            // Show success message
+            alert('Thank you for your inquiry! We are opening WhatsApp for you to send your message.');
+        });
+        
+        // Initialize active nav on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateActiveNavLink();
+            
+            // Add fade-in animation to hero elements
+            const heroElements = [
+                document.querySelector('.hero-title'),
+                document.querySelector('.hero-subtitle'),
+                document.querySelector('.hero-stats'),
+                document.querySelector('.cta-button')
+            ];
+            
+            heroElements.forEach((element, index) => {
+                if (element) {
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, (index + 1) * 200);
+                }
+            });
+            
+            // Prevent horizontal scroll on mobile
+            function preventHorizontalScroll() {
+                document.body.style.maxWidth = '100vw';
+                document.body.style.overflowX = 'hidden';
+            }
+            
+            preventHorizontalScroll();
+            window.addEventListener('resize', preventHorizontalScroll);
+            
+            // Touch swipe to close mobile menu
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            document.getElementById('mobileNav').addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            document.getElementById('mobileNav').addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    toggleMobileNav();
+                }
+            });
+        });
+        
+        // Close mobile nav with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const mobileNav = document.getElementById('mobileNav');
+                if (mobileNav.classList.contains('active')) {
+                    toggleMobileNav();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
